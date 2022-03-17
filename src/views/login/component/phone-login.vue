@@ -24,7 +24,7 @@ import type { FormInstance } from 'element-plus'
 import { phoneRules } from '../Validation'
 
 export default defineComponent({
-  setup(props) {
+  setup() {
     const ruleFormRef = ref<FormInstance>()
     const loginForm = reactive({
       phone: '',

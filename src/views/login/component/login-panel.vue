@@ -41,9 +41,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { Iphone, UserFilled } from '@element-plus/icons-vue'
-import type { FormInstance } from 'element-plus'
 import AccountLogin from './account-login.vue'
 import PhoneLogin from './phone-login.vue'
 
@@ -75,12 +74,9 @@ export default defineComponent({
   text-align: center;
 }
 .login-box {
-  width: 340px;
-  .el-tabs__content {
-    padding: 32px;
-    color: #6b778c;
-    font-size: 32px;
-    font-weight: 600;
+  width: 320px;
+  :deep .el-tabs__content {
+    padding: 25px 15px;
   }
   .custom-tabs-label .el-icon {
     vertical-align: middle;
@@ -94,7 +90,7 @@ export default defineComponent({
     font-weight: bold;
     margin-bottom: 10px;
   }
-  .el-form /deep/ .el-form-item__label {
+  .el-form :deep .el-form-item__label {
     font-weight: bold;
   }
 }
@@ -103,11 +99,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .remember-password /deep/ .el-checkbox__label {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  .forgotPassword {
+  .remember-password :deep .forgotPassword {
     font-weight: bold;
   }
 }

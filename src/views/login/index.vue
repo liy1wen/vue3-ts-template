@@ -7,10 +7,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import LoginPanel from './component/login-panel.vue'
+import service from '@/service/service'
 
 export default defineComponent({
   components: { LoginPanel },
   setup() {
+    service.get('/home/multidata').then((res: any) => {
+      console.log(res, '=============')
+    })
     return {}
   }
 })
@@ -24,6 +28,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/img/login-bg.svg');
+  background: url('../../assets/img/login-bg.jpg');
+  background-size: contain;
 }
 </style>
