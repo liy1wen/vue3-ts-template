@@ -1,0 +1,119 @@
+<template>
+  <div>
+    <h1 class="title">后台管理系统</h1>
+    <el-tabs type="border-card" stretch v-model="activeName" class="login-box">
+      <el-tab-pane name="account">
+        <template #label>
+          <span class="custom-tabs-label">
+            <el-icon><user-filled /></el-icon>
+            <span class="tab-title">账号登录</span>
+          </span>
+        </template>
+        <account-login
+          ref="accountRef"
+          :rememberPassword="isRememberPassword"
+        />
+      </el-tab-pane>
+
+      <el-tab-pane name="phone">
+        <template #label>
+          <span class="custom-tabs-label">
+            <el-icon><iphone /></el-icon>
+            <span class="tab-title">手机登录</span>
+          </span>
+        </template>
+        <phone-login ref="phoneRef" />
+      </el-tab-pane>
+    </el-tabs>
+    <div class="password-operation">
+      <el-checkbox
+        v-model="isRememberPassword"
+        class="remember-password"
+        label="记住密码"
+        size="large"
+      />
+      <el-link type="primary" class="forgotPassword">忘记密码</el-link>
+    </div>
+    <el-button type="primary" class="login-button" size="large" @click="login"
+      >立即登录</el-button
+    >
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, reactive, ref } from 'vue'
+import { Iphone, UserFilled } from '@element-plus/icons-vue'
+import type { FormInstance } from 'element-plus'
+import AccountLogin from './account-login.vue'
+import PhoneLogin from './phone-login.vue'
+
+export default defineComponent({
+  components: { Iphone, UserFilled, AccountLogin, PhoneLogin },
+  setup() {
+    const isRememberPassword = ref(true)
+    const accountRef = ref()
+    const phoneRef = ref()
+    const activeName = ref('account')
+    const login = () => {
+      activeName.value === 'account'
+        ? accountRef.value.loginAction()
+        : phoneRef.value.loginAction()
+    }
+    return {
+      accountRef,
+      phoneRef,
+      isRememberPassword,
+      login,
+      activeName
+    }
+  }
+})
+</script>
+
+<style scoped lang="less">
+.title {
+  text-align: center;
+}
+.login-box {
+  width: 340px;
+  .el-tabs__content {
+    padding: 32px;
+    color: #6b778c;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .custom-tabs-label .el-icon {
+    vertical-align: middle;
+  }
+  .custom-tabs-label span {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  .tab-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .el-form /deep/ .el-form-item__label {
+    font-weight: bold;
+  }
+}
+.password-operation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .remember-password /deep/ .el-checkbox__label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .forgotPassword {
+    font-weight: bold;
+  }
+}
+.login-button {
+  width: 100%;
+  border-radius: 0;
+  margin-top: 10px;
+}
+</style>

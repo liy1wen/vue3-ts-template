@@ -5,6 +5,26 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 // const resolve = (dir) => path.resolve(__dirname, dir)
 module.exports = {
   outputDir: 'build',
+  publicPath: './',
+  devServer: {
+    port: 1000,
+    open: true,
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    proxy: {
+      '/api': {
+        target: 'https://employee-idcard.yz-intelligence.com/', // 服务器api地址
+        changeOrigin: true, // 是否跨域
+        ws: true, // proxy websockets
+        pathRewrite: {
+          // 重写路径
+          '^/api': ''
+        }
+      }
+    }
+  },
   configureWebpack: {
     // resolve: {
     //   alias: {
