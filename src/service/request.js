@@ -10,21 +10,25 @@ const closeLoading = () => {
   count--
   if (count === 0) loadingInstance.close()
 }
+
 // create an axios instance
-const service = axios.create({
+const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
+  // baseURL: 'http://152.136.185.210:5000',
   timeout: TIME_OUT // request timeout
 })
 
 // request interceptor
-service.interceptors.request.use(
+request.interceptors.request.use(
   (config) => {
-    if (count === 0) {
-      loadingInstance = ElLoading.service({
-        fullscreen: true
-      })
+    if (config.showLoading) {
+      if (count === 0) {
+        loadingInstance = ElLoading.service({
+          fullscreen: true
+        })
+      }
+      count++
     }
-    count++
     const token = localCache.getCache('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
@@ -38,17 +42,18 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
     loadingInstance && closeLoading()
     const res = response.data
     return Promise.resolve(res)
   },
   (error) => {
+    console.log(error, 'error')
     loadingInstance && closeLoading()
     ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )
 
-export default service
+export default request

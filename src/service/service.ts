@@ -28,7 +28,7 @@ service.interceptors.request.use(
     count++
     const token = localCache.getCache('token')
     if (token) {
-      // config.headers['Authorization'] = `Bearer ${token}`
+      // config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },

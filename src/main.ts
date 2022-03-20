@@ -5,11 +5,11 @@ import store from './store'
 import 'element-plus/dist/index.css'
 import 'normalize.css'
 import './assets/css/index.less'
-// import * as Icons from '@element-plus/icons-vue'
+import * as Icons from '@element-plus/icons-vue'
 // 注册Icons 全局组件
 // Object.keys(Icons).forEach((key) => {
-//   app.component(key.name, key)
-//   console.log(key, Icons)
+//   console.log(Icons)
+//   app.component('AddLocation', Icons.AddLocation)
 // })
 
 const app = createApp(App)

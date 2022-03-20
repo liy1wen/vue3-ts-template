@@ -40,33 +40,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { Iphone, UserFilled } from '@element-plus/icons-vue'
 import AccountLogin from './account-login.vue'
 import PhoneLogin from './phone-login.vue'
 
-export default defineComponent({
-  components: { Iphone, UserFilled, AccountLogin, PhoneLogin },
-  setup() {
-    const isRememberPassword = ref(true)
-    const accountRef = ref()
-    const phoneRef = ref()
-    const activeName = ref('account')
-    const login = () => {
-      activeName.value === 'account'
-        ? accountRef.value.loginAction()
-        : phoneRef.value.loginAction()
-    }
-    return {
-      accountRef,
-      phoneRef,
-      isRememberPassword,
-      login,
-      activeName
-    }
-  }
-})
+const isRememberPassword = ref(true)
+const accountRef = ref<InstanceType<typeof AccountLogin>>()
+const phoneRef = ref<InstanceType<typeof AccountLogin>>()
+const activeName = ref('account')
+const login = () => {
+  activeName.value === 'account'
+    ? accountRef.value?.loginAction(isRememberPassword.value)
+    : phoneRef.value?.loginAction(isRememberPassword.value)
+}
 </script>
 
 <style scoped lang="less">
@@ -75,8 +63,17 @@ export default defineComponent({
 }
 .login-box {
   width: 320px;
-  :deep .el-tabs__content {
+  :deep(.el-tabs__content) {
     padding: 25px 15px;
+  }
+  :deep(.el-tabs__item) {
+    height: 46px;
+    line-height: 46px;
+    background: #f4f4f5;
+    border-color: #f4f4f5 !important;
+  }
+  :deep(.is-active) {
+    border-color: transparent !important;
   }
   .custom-tabs-label .el-icon {
     vertical-align: middle;
@@ -90,7 +87,7 @@ export default defineComponent({
     font-weight: bold;
     margin-bottom: 10px;
   }
-  .el-form :deep .el-form-item__label {
+  .el-form :deep(.el-form-item__label) {
     font-weight: bold;
   }
 }

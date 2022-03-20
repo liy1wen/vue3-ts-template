@@ -5,33 +5,28 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 // const resolve = (dir) => path.resolve(__dirname, dir)
 module.exports = {
   outputDir: 'build',
-  publicPath: './',
+  // publicPath: './',
   devServer: {
-    port: 1000,
     open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
     proxy: {
-      '/api': {
-        target: 'https://employee-idcard.yz-intelligence.com/', // 服务器api地址
-        changeOrigin: true, // 是否跨域
-        ws: true, // proxy websockets
+      '^/api': {
+        target: 'http://152.136.185.210:5000',
         pathRewrite: {
-          // 重写路径
           '^/api': ''
-        }
+        },
+        changeOrigin: true
+      }
+    }
+  },
+  // 2.配置方式二: 和webpack属性完全一致, 最后会进行合并
+  configureWebpack: {
+    resolve: {
+      alias: {
+        components: '@/components'
       }
     }
   },
   configureWebpack: {
-    // resolve: {
-    //   alias: {
-    //     '@': resolve('/src'),
-    //     '@/com': resolve('/src/components')
-    //   }
-    // },
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()]

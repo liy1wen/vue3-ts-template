@@ -1,8 +1,12 @@
 import { createStore } from 'vuex'
-
-export default createStore({
-  state: {},
+import { IRootState } from './types'
+import { userModule } from './modules/user/user'
+import { mainModule } from './modules/main/main'
+export default createStore<IRootState>({
+  state: {
+    username: ''
+  },
   mutations: {},
   actions: {},
-  modules: {}
+  modules: { userModule, mainModule }
 })

@@ -1,5 +1,5 @@
 export const accountRules = {
-  username: [
+  name: [
     {
       required: true,
       message: '请输入用户名',
