@@ -3,5 +3,8 @@ export default {
   path: '/main/product/goods',
   name: 'goods',
   component: goods,
+  meta: {
+    title: '商品信息'
+  },
   children: []
 }

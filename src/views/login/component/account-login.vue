@@ -21,7 +21,6 @@ import type { FormInstance } from 'element-plus'
 import { accountRules } from '../Validation'
 import utils from '@/utils/cache'
 import { useStore } from 'vuex'
-import request from '@/service/request.js'
 
 const store = useStore()
 const ruleFormRef = ref<FormInstance>()

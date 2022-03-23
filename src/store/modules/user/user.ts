@@ -5,6 +5,7 @@ import localCache from '@/utils/cache'
 import { accountLogin, getUserInfo, getUserMenu } from '@/api/login'
 import { IRequest } from '@/api/login/types'
 import router from '@/router'
+import { generateRoutes } from '@/utils/generateRoutes'
 
 export const userModule: Module<IUserState, IRootState> = {
   namespaced: true,
@@ -23,6 +24,13 @@ export const userModule: Module<IUserState, IRootState> = {
     },
     SET_USERMENU(state: IUserState, userMenu: any) {
       state.userMenu = userMenu
+      // userMenus => routes
+      const routes = generateRoutes(userMenu)
+
+      // 将routes => router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
@@ -39,8 +47,7 @@ export const userModule: Module<IUserState, IRootState> = {
       const userMenu = await getUserMenu(userInfo.data.id)
       commit('SET_USERMENU', userMenu.data)
       localCache.setCache('userMenu', userMenu.data)
-      console.log(userMenu.data)
-      router.push('/main')
+      router.push('/main/analysis/overview')
     }
   }
 }

@@ -8,14 +8,23 @@
         <el-header class="page-header">
           <nav-header />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <div class="page-info">
+            <!-- <router-view v-slot="{ Component }">
+              <transition>
+                <component :is="Component" />
+              </transition>
+            </router-view> -->
+            <router-view />
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import NavMenu from '@/components/NavMenu/index.vue'
 import NavHeader from '@/components/NavHeader/index.vue'
 import { useStore } from 'vuex'
@@ -40,6 +49,10 @@ const isCollapse = computed(() => store.state.mainModule.isCollapse)
 
 .page-content {
   height: calc(100% - 48px);
+  .page-info {
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
 
 .el-header,

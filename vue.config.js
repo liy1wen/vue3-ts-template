@@ -18,15 +18,12 @@ module.exports = {
       }
     }
   },
-  // 2.配置方式二: 和webpack属性完全一致, 最后会进行合并
   configureWebpack: {
     resolve: {
       alias: {
         components: '@/components'
       }
-    }
-  },
-  configureWebpack: {
+    },
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()]

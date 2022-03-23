@@ -1,26 +1,35 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Main from '@/views/main/index.vue'
 import localCache from '@/utils/cache'
 
-const routes: Array<RouteRecordRaw> = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/main'
   },
   {
-    path: '/main',
-    component: Main
-  },
-
-  {
     path: '/login',
-    name: 'Login',
-    component: () => import('@/views/login/index.vue')
+    name: 'login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录'
+    }
   },
   {
-    path: '/404',
-    name: '404',
-    component: () => import('@/views/404.vue')
+    path: '/main',
+    name: 'main',
+    redirect: '/main/analysis/overview',
+    component: () => import('@/views/main/index.vue'),
+    meta: {
+      title: '核心技术'
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      title: '页面找不到~'
+    }
   }
 ]
 
@@ -29,21 +38,19 @@ const router = createRouter({
   routes
 })
 
+// 导航守卫
 router.beforeEach((to) => {
-  const token = localCache.getCache('token')
-  let isNotFound = true
-  routes.map((item) => {
-    if (item.path === to.path) {
-      return (isNotFound = false)
-    }
-  })
   if (to.path !== '/login') {
+    const token = localCache.getCache('token')
     if (!token) {
       return '/login'
     }
   }
-  if (isNotFound) {
-    return '/404'
+
+  if (to.path.indexOf('/main') !== -1) {
+    if (to.name === 'notFound') {
+      to.name = 'user'
+    }
   }
 })
 

@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <h2>dashboard</h2>
+    <el-input placeholder="Please input" />
   </div>
 </template>
 

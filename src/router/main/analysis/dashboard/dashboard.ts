@@ -3,5 +3,8 @@ export default {
   path: '/main/analysis/dashboard',
   name: 'dashboard',
   component: dashboard,
+  meta: {
+    title: '商品统计'
+  },
   children: []
 }

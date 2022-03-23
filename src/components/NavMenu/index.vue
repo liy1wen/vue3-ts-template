@@ -1,11 +1,14 @@
 <template>
   <div class="nav-menu">
-    <div class="logo">
-      <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-      <span v-if="!collapse" class="title">Vue3+TS</span>
-    </div>
+    <router-link to="/" class="menu-link">
+      <div class="logo">
+        <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
+        <span v-if="!collapse" class="title">Vue3+TS</span>
+      </div>
+    </router-link>
+
     <el-menu
-      default-active="2"
+      :default-active="activeMenu"
       class="el-menu-vertical"
       :collapse="collapse"
       background-color="#0c2135"
@@ -16,7 +19,7 @@
         <!-- 二级菜单 -->
         <template v-if="item.type === 1">
           <!-- 二级菜单的可以展开的标题 -->
-          <el-sub-menu :index="item.id + ''">
+          <el-sub-menu :index="item.url">
             <template #title>
               <!-- <i v-if="item.icon" :class="item.icon"></i> -->
               <el-icon><iphone /></el-icon>
@@ -24,16 +27,18 @@
             </template>
             <!-- 遍历里面的item -->
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
-                <i v-if="subitem.icon" :class="subitem.icon"></i>
-                <span>{{ subitem.name }}</span>
-              </el-menu-item>
+              <router-link :to="subitem.url" class="menu-link">
+                <el-menu-item :index="subitem.url">
+                  <i v-if="subitem.icon" :class="subitem.icon"></i>
+                  <span>{{ subitem.name }}</span>
+                </el-menu-item>
+              </router-link>
             </template>
           </el-sub-menu>
         </template>
         <!-- 一级菜单 -->
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.id + ''">
+          <el-menu-item :index="item.url">
             <i v-if="item.icon" :class="item.icon"></i>
             <span>{{ item.name }}</span>
           </el-menu-item>
@@ -44,12 +49,16 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { Iphone } from '@element-plus/icons-vue'
+import { useRouter, useRoute } from 'vue-router'
 const store = useStore()
+const router = useRouter()
+const route = useRoute()
 const userMenus = computed(() => store.state.userModule.userMenu)
 const collapse = computed(() => store.state.mainModule.isCollapse)
+const activeMenu = ref(route.path)
 </script>
 
 <style scoped lang="less">
@@ -79,6 +88,9 @@ const collapse = computed(() => store.state.mainModule.isCollapse)
 
   .el-menu {
     border-right: none;
+  }
+  .menu-link {
+    text-decoration: none;
   }
   :deep(.el-sub-menu__title) {
     background-color: #001529 !important;
