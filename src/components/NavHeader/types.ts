@@ -1,4 +1,4 @@
 export interface IBreadCrumbs {
   name: any
-  path: String
+  path: string
 }

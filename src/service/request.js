@@ -6,6 +6,7 @@ import localCache from '../utils/cache'
 let count = 0
 let loadingInstance = null
 const TIME_OUT = 10000
+const DEFAULT_SHOWLOADING = true
 const closeLoading = () => {
   count--
   if (count === 0) loadingInstance.close()
@@ -14,7 +15,7 @@ const closeLoading = () => {
 // create an axios instance
 const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
-  // baseURL: 'http://152.136.185.210:5000',
+  showLoading: DEFAULT_SHOWLOADING,
   timeout: TIME_OUT // request timeout
 })
 
@@ -28,6 +29,7 @@ request.interceptors.request.use(
         })
       }
       count++
+      console.log(count)
     }
     const token = localCache.getCache('token')
     if (token) {

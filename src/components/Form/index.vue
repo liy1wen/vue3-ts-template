@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <el-form :label-width="labelWidth" class="form-container" :size="size">
       <el-row>
         <template v-for="item in formItems" :key="item.lable">
@@ -13,27 +16,31 @@
                 <el-input
                   :placeholder="item.placeholder"
                   clearable
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 />
               </template>
               <template v-if="item.type === 'password'">
                 <el-input
                   type="password"
                   :placeholder="item.placeholder"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 />
               </template>
               <template v-if="item.type === 'date'">
                 <el-date-picker
                   range-separator="To"
                   v-bind="item.otherOptions"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 />
               </template>
               <template v-if="item.type === 'select'">
                 <el-select
                   :placeholder="item.placeholder"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-option
                     :label="optionItem.lable"
@@ -44,11 +51,17 @@
                 </el-select>
               </template>
               <template v-if="item.type === 'switch'">
-                <el-switch v-model="formData[`${item.field}`]" />
+                <el-switch
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                />
               </template>
 
               <template v-if="item.type === 'checkbox'">
-                <el-checkbox-group v-model="formData[`${item.field}`]">
+                <el-checkbox-group
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                >
                   <el-checkbox
                     :label="optionItem.lable"
                     name="type"
@@ -58,7 +71,10 @@
                 </el-checkbox-group>
               </template>
               <template v-if="item.type === 'radio'">
-                <el-radio-group v-model="formData[`${item.field}`]">
+                <el-radio-group
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                >
                   <el-radio
                     :label="optionItem.lable"
                     v-for="optionItem in item.options"
@@ -67,13 +83,20 @@
                 </el-radio-group>
               </template>
               <template v-if="item.type === 'textarea'">
-                <el-input type="textarea" v-model="formData[`${item.field}`]" />
+                <el-input
+                  type="textarea"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
+                />
               </template>
             </el-form-item>
           </el-col>
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -105,7 +128,7 @@ const props = defineProps({
   },
   formItemStyle: {
     type: Object,
-    default: () => ({ padding: '20px 40px' })
+    default: () => ({ padding: '20px 40px', marginBottom: 0 })
   },
   size: {
     type: String,
@@ -113,18 +136,18 @@ const props = defineProps({
   }
 })
 const emit = defineEmits(['update:modelValue'])
-const formData = ref({ ...props.modelValue })
-watch(
-  formData,
-  (newValue) => {
-    emit('update:modelValue', newValue)
-  },
-  { deep: true }
-)
+
+const handleValueChange = (value: any, field: any) => {
+  emit('update:modelValue', { ...props.modelValue, [field]: value })
+}
 </script>
 
 <style scoped lang="less">
 .form-container {
   padding-top: 18px;
+}
+.footer {
+  // text-align: right;
+  padding: 0 20px 20px 0;
 }
 </style>

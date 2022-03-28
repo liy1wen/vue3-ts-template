@@ -2,6 +2,7 @@ import { Module } from 'vuex'
 import { IUserState } from './types'
 import { IRootState } from '../../types'
 import localCache from '@/utils/cache'
+import { generateBtnPermissions } from '@/utils/generateBtnPermissions'
 import { accountLogin, getUserInfo, getUserMenu } from '@/api/login'
 import { IRequest } from '@/api/login/types'
 import router from '@/router'
@@ -12,7 +13,8 @@ export const userModule: Module<IUserState, IRootState> = {
   state: {
     userInfo: localCache.getCache('userInfo') ?? '',
     token: localCache.getCache('token') ?? '',
-    userMenu: localCache.getCache('userMenu') ?? []
+    userMenu: localCache.getCache('userMenu') ?? [],
+    btnPermissions: localCache.getCache('btnPermissions') ?? []
   },
   getters: {},
   mutations: {
@@ -31,6 +33,10 @@ export const userModule: Module<IUserState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+
+      const btnPermissions = generateBtnPermissions(userMenu)
+      localCache.setCache('btnPermissions', btnPermissions)
+      state.btnPermissions = btnPermissions
     }
   },
   actions: {

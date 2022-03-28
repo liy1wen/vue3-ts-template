@@ -3,7 +3,7 @@ import { IRequest, IResponse } from './types'
 
 // 登录
 export const accountLogin = (params: IRequest): IResponse =>
-  request.post('/login', params, { showLoading: true })
+  request.post('/login', params)
 // 获取用户信息
 export const getUserInfo = (id: number): IResponse =>
   request.get(`/users/${id}`, { showLoading: false })

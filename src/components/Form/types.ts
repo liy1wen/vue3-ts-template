@@ -9,7 +9,7 @@ type fromType =
   | 'textarea'
 
 export interface IFormItem {
-  field: String
+  field: string
   lable: string
   type: fromType
   placeholder?: string
@@ -20,8 +20,8 @@ export interface IFormItem {
 
 export interface IForm {
   formItems: IFormItem[]
-  labelWidth?: String
+  labelWidth?: string
   colLayout?: any
   formItemStyle?: any
-  size?: String
+  size?: string
 }

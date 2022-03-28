@@ -48,7 +48,7 @@ import PhoneLogin from './phone-login.vue'
 
 const isRememberPassword = ref(true)
 const accountRef = ref<InstanceType<typeof AccountLogin>>()
-const phoneRef = ref<InstanceType<typeof AccountLogin>>()
+const phoneRef = ref<InstanceType<typeof PhoneLogin>>()
 const activeName = ref('account')
 const login = () => {
   activeName.value === 'account'

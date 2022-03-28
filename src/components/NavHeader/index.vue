@@ -5,19 +5,18 @@
       <Fold v-else />
     </el-icon>
     <div class="header-right">
-      <bread-crumbs :breadCrumbs="breadCrumbs" />
+      <bread-crumbs :breadCrumbs="bCrumbs" />
       <user-operation />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { useStore } from 'vuex'
 import UserOperation from './user-operation.vue'
 import BreadCrumbs from './bread-crumbs.vue'
-import { IBreadCrumbs } from './types'
 import { useRoute } from 'vue-router'
 import { generateBreadCrumbs } from '@/utils/generateBreadCrumbs'
 const store = useStore()
@@ -28,7 +27,7 @@ const handleFoldClick = () => {
   store.commit('mainModule/SET_ISCOLLAPSE', isFold.value)
 }
 
-const breadCrumbs = computed(() => {
+const bCrumbs = computed(() => {
   return generateBreadCrumbs(store.state.userModule.userMenu, route.path)
 })
 </script>

@@ -1,5 +1,6 @@
 export interface IUserState {
   userInfo: any
   token: string
-  userMenu: any
+  userMenu: any[]
+  btnPermissions: any[]
 }

@@ -1,18 +1,19 @@
 <template>
-  <div class="menu">
-    <h2>menu</h2>
+  <div>
+    <page-content
+      :tableConfig="tableConfig"
+      ref="pageContentRef"
+    ></page-content>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { tableConfig } from './config/tableConfig'
+import PageContent from '@/components/PageContent/index.vue'
+import { usePageSearch } from '@/hooks/use-page-search'
 
-export default defineComponent({
-  name: 'menu',
-  setup() {
-    return {}
-  }
-})
+const { pageContentRef } = usePageSearch()
 </script>
 
 <style scoped></style>

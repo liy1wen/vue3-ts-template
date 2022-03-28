@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { defineProps, PropType } from 'vue'
 import { IBreadCrumbs } from './types'
-const props = defineProps({
+defineProps({
   breadCrumbs: {
     type: Array as PropType<IBreadCrumbs[]>,
     default: () => []

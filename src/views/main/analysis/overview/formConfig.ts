@@ -35,7 +35,7 @@ export const formConfig: IForm = {
     xs: 24
   },
   formItemStyle: {
-    padding: '15px 30px'
+    padding: '15px 20px'
   },
   size: 'large'
 }
