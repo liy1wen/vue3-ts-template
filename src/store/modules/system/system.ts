@@ -1,7 +1,14 @@
 import { Module } from 'vuex'
+import { ElMessage } from 'element-plus'
 import { ISystemState } from './types'
 import { IRootState } from '../../types'
-import { getDataList } from '@/api/system/index'
+import {
+  getDataList,
+  deleteData,
+  createData,
+  updateData
+} from '@/api/system/index'
+
 export const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state: {
@@ -12,10 +19,20 @@ export const systemModule: Module<ISystemState, IRootState> = {
     goodsList: [],
     goodsCount: 0,
     menuList: [],
-    menuCount: 0
+    menuCount: 0,
+    departmentList: [],
+    departmentCount: 0,
+    url: '',
+    requestParams: {}
   },
   getters: {},
   mutations: {
+    SET_URL(state: ISystemState, url: string) {
+      state.url = url
+    },
+    SET_REQUESTPARAMS(state: ISystemState, params: any) {
+      state.requestParams = params
+    },
     SET_USERSLIST(state: ISystemState, list: any[]) {
       state.usersList = list
     },
@@ -39,15 +56,47 @@ export const systemModule: Module<ISystemState, IRootState> = {
     },
     SET_MENUCOUNT(state: ISystemState, count: number) {
       state.menuCount = count
+    },
+    SET_DEPARTMENTLIST(state: ISystemState, list: any[]) {
+      state.departmentList = list
+    },
+    SET_DEPARTMENTCOUNT(state: ISystemState, count: number) {
+      state.departmentCount = count
     }
   },
   actions: {
     async getDataList({ commit }, payload) {
       const { url, params } = payload
+      commit('SET_URL', url)
+      commit('SET_REQUESTPARAMS', params)
       const { data } = await getDataList(url, params)
       const dataType = url.toUpperCase()
       commit(`SET_${dataType}COUNT`, data.totalCount)
       commit(`SET_${dataType}LIST`, data.list)
+    },
+    async deleteData({ dispatch, state }, payload) {
+      const { url, id } = payload
+      const { code, data } = await deleteData(url, id)
+      ElMessage.success(data)
+      if (code == 0) {
+        dispatch('getDataList', { url: state.url, params: state.requestParams })
+      }
+    },
+    async createData({ dispatch, state }, payload) {
+      const { url, params } = payload
+      const { code, data } = await createData(url, params)
+      ElMessage.success(data)
+      if (code == 0) {
+        dispatch('getDataList', { url: state.url, params: state.requestParams })
+      }
+    },
+    async updateData({ dispatch, state }, payload) {
+      const { url, params } = payload
+      const { code, data } = await updateData(url, params)
+      ElMessage.success(data)
+      if (code == 0) {
+        dispatch('getDataList', { url: state.url, params: state.requestParams })
+      }
     }
   }
 }

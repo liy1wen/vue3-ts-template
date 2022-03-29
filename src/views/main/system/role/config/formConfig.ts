@@ -4,7 +4,7 @@ export const formConfig: IForm = {
   formItems: [
     {
       field: 'name',
-      lable: '用户名',
+      label: '用户名',
       placeholder: '请输入用户名',
       type: 'input'
     }

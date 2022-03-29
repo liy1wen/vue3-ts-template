@@ -10,12 +10,13 @@ type fromType =
 
 export interface IFormItem {
   field: string
-  lable: string
+  label: string
   type: fromType
   placeholder?: string
   rule?: any
   options?: any[]
   otherOptions?: any
+  isHidden?: boolean
 }
 
 export interface IForm {

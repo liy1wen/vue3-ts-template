@@ -6,8 +6,5 @@ export const usePageSearch = () => {
   const handerSearch = (params?: any) => {
     pageContentRef.value?.getDataList(params)
   }
-  return {
-    pageContentRef,
-    handerSearch
-  }
+  return [pageContentRef, handerSearch]
 }

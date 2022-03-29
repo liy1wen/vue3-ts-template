@@ -1,19 +1,15 @@
 <template>
-  <div>
+  <div class="search-container">
     <Form v-bind="formConfig" v-model="formData">
       <!-- <template #header>
         <div class="title">高级检索</div>
       </template> -->
       <template #footer>
         <div class="buttons">
-          <el-button
-            type="primary"
-            size="large"
-            :icon="Refresh"
-            @click="resetData"
+          <el-button type="primary" :icon="Refresh" @click="resetData"
             >重置</el-button
           >
-          <el-button type="primary" size="large" :icon="Search" @click="search"
+          <el-button type="primary" :icon="Search" @click="search"
             >搜索</el-button
           >
         </div>
@@ -49,13 +45,17 @@ const search = () => {
 }
 </script>
 
-<style scoped>
-.title {
-  font-size: 30px;
-  padding: 20px 0;
-  font-weight: bold;
-}
-.buttons {
-  text-align: right;
+<style scoped lang="less">
+.search-container {
+  padding-top: 18px;
+  .title {
+    font-size: 30px;
+    padding: 20px 0;
+    font-weight: bold;
+  }
+  .buttons {
+    text-align: right;
+    padding: 0 20px 20px 0;
+  }
 }
 </style>

@@ -1,16 +1,17 @@
 <template>
-  <div>
+  <div class="form-container">
     <div class="header">
       <slot name="header"></slot>
     </div>
-    <el-form :label-width="labelWidth" class="form-container" :size="size">
+    <el-form :label-width="labelWidth" class="form-content" :size="size">
       <el-row>
-        <template v-for="item in formItems" :key="item.lable">
+        <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
-              :label="item.lable"
+              :label="item.label"
               :style="formItemStyle"
               :rules="item.rule"
+              v-if="!item.isHidden"
             >
               <template v-if="item.type === 'input'">
                 <el-input
@@ -23,6 +24,7 @@
               <template v-if="item.type === 'password'">
                 <el-input
                   type="password"
+                  show-password
                   :placeholder="item.placeholder"
                   :model-value="modelValue[`${item.field}`]"
                   @update:modelValue="handleValueChange($event, item.field)"
@@ -43,10 +45,10 @@
                   @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-option
-                    :label="optionItem.lable"
+                    :label="optionItem.label"
                     :value="optionItem.value"
                     v-for="optionItem in item.options"
-                    :key="optionItem.lable"
+                    :key="optionItem.label"
                   />
                 </el-select>
               </template>
@@ -63,10 +65,10 @@
                   @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-checkbox
-                    :label="optionItem.lable"
+                    :label="optionItem.label"
                     name="type"
                     v-for="optionItem in item.options"
-                    :key="optionItem.lable"
+                    :key="optionItem.label"
                   />
                 </el-checkbox-group>
               </template>
@@ -76,9 +78,9 @@
                   @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-radio
-                    :label="optionItem.lable"
+                    :label="optionItem.label"
                     v-for="optionItem in item.options"
-                    :key="optionItem.lable"
+                    :key="optionItem.label"
                   />
                 </el-radio-group>
               </template>
@@ -144,10 +146,9 @@ const handleValueChange = (value: any, field: any) => {
 
 <style scoped lang="less">
 .form-container {
-  padding-top: 18px;
+  // padding-top: 18px;
 }
 .footer {
   // text-align: right;
-  padding: 0 20px 20px 0;
 }
 </style>

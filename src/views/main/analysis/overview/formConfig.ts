@@ -4,20 +4,20 @@ export const formConfig: IForm = {
   formItems: [
     {
       field: 'name',
-      lable: '姓名',
+      label: '姓名',
       placeholder: '请输入姓名',
       type: 'input',
       rule: { required: true, message: '请输入姓名', trigger: 'blur' }
     },
     {
       field: 'title',
-      lable: '标题',
+      label: '标题',
       placeholder: '请输入标题',
       type: 'input'
     },
     {
       field: 'date',
-      lable: '创建时间',
+      label: '创建时间',
       type: 'date',
       otherOptions: {
         startPlaceholder: '开始日期',

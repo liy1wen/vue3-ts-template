@@ -11,6 +11,6 @@ import PageContent from '@/components/PageContent/index.vue'
 import { formConfig } from './config/formConfig'
 import { tableConfig } from './config/tableConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
-const { pageContentRef, handerSearch } = usePageSearch()
+const [pageContentRef, handerSearch] = usePageSearch()
 </script>
 <style scoped></style>

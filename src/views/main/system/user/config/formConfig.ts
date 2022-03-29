@@ -4,20 +4,20 @@ export const formConfig: IForm = {
   formItems: [
     {
       field: 'name',
-      lable: '姓名',
+      label: '姓名',
       placeholder: '请输入姓名',
       type: 'input'
     },
     {
       field: 'cellphone',
-      lable: '手机号',
+      label: '手机号',
       placeholder: '请输入手机号',
       type: 'input'
     }
   ],
-  labelWidth: '120px',
+  labelWidth: '80px',
   colLayout: {
-    xl: 6,
+    xl: 5,
     lg: 8,
     md: 12,
     sm: 24,
@@ -26,6 +26,5 @@ export const formConfig: IForm = {
   formItemStyle: {
     padding: '15px 20px',
     marginBottom: '10px'
-  },
-  size: 'large'
+  }
 }

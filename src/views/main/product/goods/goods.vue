@@ -26,6 +26,6 @@ import PageContent from '@/components/PageContent/index.vue'
 import { tableConfig } from './config/tableConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
 
-const { pageContentRef } = usePageSearch()
+const [pageContentRef] = usePageSearch()
 </script>
 <style scoped></style>

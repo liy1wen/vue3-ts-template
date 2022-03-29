@@ -1,10 +1,14 @@
 export interface ISystemState {
   usersList: any[]
-  usersCount: Number
+  usersCount: number
   roleList: any[]
-  roleCount: Number
+  roleCount: number
   goodsList: any[]
-  goodsCount: Number
+  goodsCount: number
   menuList: any[]
-  menuCount: Number
+  menuCount: number
+  departmentList: any[]
+  departmentCount: number
+  url: string
+  requestParams: any
 }

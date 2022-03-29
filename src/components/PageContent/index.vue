@@ -10,8 +10,15 @@
       <!-- 常规插槽 -->
       <template #handerHeader>
         <div>
-          <el-button type="primary" size="large" v-if="showCreateBtn"
-            >新建用户</el-button
+          <el-button type="primary" :icon="Delete" v-if="showDeleteBtn"
+            >删除</el-button
+          >
+          <el-button
+            type="primary"
+            :icon="CirclePlus"
+            v-if="showCreateBtn"
+            @click="handerAddNew"
+            >新建</el-button
           >
         </div>
       </template>
@@ -33,9 +40,10 @@
         <el-button
           size="small"
           :icon="Edit"
+          type="primary"
           @click="handleEdit(scope.row)"
           v-if="showUpdateBtn"
-          >Edit</el-button
+          >编辑</el-button
         >
         <el-button
           size="small"
@@ -43,7 +51,7 @@
           :icon="Delete"
           @click="handleDelete(scope.row)"
           v-if="showDeleteBtn"
-          >Delete</el-button
+          >删除</el-button
         >
       </template>
       <!-- 动态插槽 -->
@@ -60,9 +68,17 @@
 
 <script setup lang="ts">
 import Table from '../Table/index.vue'
-import { defineProps, computed, defineExpose, ref, watch } from 'vue'
+import {
+  defineProps,
+  computed,
+  defineExpose,
+  ref,
+  watch,
+  defineEmits
+} from 'vue'
 import { useStore } from 'vuex'
-import { Delete, Edit } from '@element-plus/icons-vue'
+import { Delete, Edit, CirclePlus } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { useBtnPermissions } from '@/hooks/use-btn-permissions'
 const props = defineProps({
   tableConfig: {
@@ -70,6 +86,7 @@ const props = defineProps({
     require: true
   }
 })
+const emit = defineEmits(['addNew', 'edit'])
 const pageInfo = ref({
   pageSize: 10,
   currentPage: 1
@@ -106,8 +123,28 @@ const showDeleteBtn = useBtnPermissions(url, 'delete')
 const showUpdateBtn = useBtnPermissions(url, 'update')
 const showQueryBtn = useBtnPermissions(url, 'query')
 
-const handleEdit = (row: any): void => {
-  console.log(row)
+// 按钮操作处理逻辑
+const handleEdit = (row: any) => emit('edit', row)
+const handerAddNew = () => emit('addNew')
+const handleDelete = (row: any) => {
+  const { id } = row
+  ElMessageBox.confirm('确定要删除吗？', '删除', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  })
+    .then(() => {
+      store.dispatch('systemModule/deleteData', {
+        url,
+        id
+      })
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: '取消'
+      })
+    })
 }
 defineExpose({
   getDataList

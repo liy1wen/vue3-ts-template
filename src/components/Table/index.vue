@@ -29,16 +29,10 @@
         v-if="showIndexColumn"
       />
       <template v-for="item in propList" :key="item.prop">
-        <el-table-column
-          align="center"
-          :prop="item.prop"
-          :label="item.label"
-          :width="item.width"
-          show-overflow-tooltip
-        >
+        <el-table-column align="center" v-bind="item" show-overflow-tooltip>
           <template #default="scope">
             <slot :name="item.slotName" :row="scope.row">
-              {{ scope.row[item.prop] }}
+              {{ scope.row[item.prop] || '-' }}
             </slot>
           </template>
         </el-table-column>

@@ -29,7 +29,6 @@ request.interceptors.request.use(
         })
       }
       count++
-      console.log(count)
     }
     const token = localCache.getCache('token')
     if (token) {
@@ -48,6 +47,9 @@ request.interceptors.response.use(
   (response) => {
     loadingInstance && closeLoading()
     const res = response.data
+    if (res.code !== 0) {
+      ElMessage.error(res.data)
+    }
     return Promise.resolve(res)
   },
   (error) => {
