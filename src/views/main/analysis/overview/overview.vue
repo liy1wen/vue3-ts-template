@@ -1,46 +1,32 @@
 <template>
   <div class="overview">
-    <page-search :formConfig="formConfig" />
-    <div class="table-content">
-      <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="date" label="Date" min-width="180" />
-        <el-table-column prop="name" label="Name" min-width="180" />
-        <el-table-column prop="address" label="Address" />
-      </el-table>
-    </div>
+    <Card title="项目介绍" class="card-box">
+      <div class="c-left">
+        Vue3Admin 是基于 Vue3、Vuex、VueRouter、Vite、 ElementPlus
+        、TypeScript、Echart5 等后台系统解决方案。
+      </div>
+    </Card>
+    <Card title="技术栈" class="card-box">
+      <div class="c-left">
+        <text-link :textLinkArr="technologyStacks" />
+      </div>
+    </Card>
   </div>
 </template>
 
 <script lang="ts" setup>
-import PageSearch from '@/components/PageSearch/index.vue'
-import { formConfig } from './formConfig'
-
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
-]
+import Card from '@/components/Card'
+import TextLink from '@/components/TextLink'
+import { technologyStacks } from './config/technologyStacks'
 </script>
-<style scoped>
-.table-content {
-  padding: 30px;
-  border-top: 20px solid #f0f2f5;
+<style scoped lang="less">
+.overview {
+  background: #f0f2f5;
+  .card-box {
+    margin-bottom: 20px;
+    .c-left {
+      text-align: left;
+    }
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title">后台管理系统</h1>
+    <h1 class="title animate__animated animate__backInDown">后台管理系统</h1>
     <el-tabs type="border-card" stretch v-model="activeName" class="login-box">
       <el-tab-pane name="account">
         <template #label>

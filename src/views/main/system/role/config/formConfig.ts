@@ -7,6 +7,22 @@ export const formConfig: IForm = {
       label: '用户名',
       placeholder: '请输入用户名',
       type: 'input'
+    },
+    {
+      field: 'intro',
+      label: '权限介绍',
+      placeholder: '请输入权限介绍',
+      type: 'input'
+    },
+    {
+      field: 'createAt',
+      label: '创建时间',
+      type: 'date',
+      otherOptions: {
+        startPlaceholder: '开始日期',
+        endPlaceholder: '结束日期',
+        type: 'daterange'
+      }
     }
   ],
   labelWidth: '120px',

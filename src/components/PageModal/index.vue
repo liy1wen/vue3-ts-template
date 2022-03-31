@@ -8,6 +8,7 @@
       destroy-on-close
     >
       <Form v-bind="modalConfig" v-model="formData" />
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
@@ -38,6 +39,10 @@ const props = defineProps({
   pageName: {
     type: String,
     default: ''
+  },
+  otherInfo: {
+    type: Object,
+    default: () => ({})
   }
 })
 const dialogVisible = ref(false)
@@ -56,13 +61,19 @@ const submit = () => {
     // 编辑
     store.dispatch('systemModule/updateData', {
       url: `${props.pageName}/${props.editDefaultData.id}`,
-      params: formData.value
+      params: {
+        ...formData.value,
+        ...props.otherInfo
+      }
     })
   } else {
     // 新增
     store.dispatch('systemModule/createData', {
       url: props.pageName,
-      params: formData.value
+      params: {
+        ...formData.value,
+        ...props.otherInfo
+      }
     })
   }
   dialogVisible.value = false

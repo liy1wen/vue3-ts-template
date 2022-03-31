@@ -54,6 +54,10 @@ export const userModule: Module<IUserState, IRootState> = {
       commit('SET_USERMENU', userMenu.data)
       localCache.setCache('userMenu', userMenu.data)
       router.push('/main/analysis/overview')
+    },
+    loginOut() {
+      localCache.clearCache()
+      router.replace('/login')
     }
   }
 }

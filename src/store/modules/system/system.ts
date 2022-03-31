@@ -77,24 +77,24 @@ export const systemModule: Module<ISystemState, IRootState> = {
     async deleteData({ dispatch, state }, payload) {
       const { url, id } = payload
       const { code, data } = await deleteData(url, id)
-      ElMessage.success(data)
       if (code == 0) {
+        ElMessage.success(data)
         dispatch('getDataList', { url: state.url, params: state.requestParams })
       }
     },
     async createData({ dispatch, state }, payload) {
       const { url, params } = payload
       const { code, data } = await createData(url, params)
-      ElMessage.success(data)
       if (code == 0) {
+        ElMessage.success(data)
         dispatch('getDataList', { url: state.url, params: state.requestParams })
       }
     },
     async updateData({ dispatch, state }, payload) {
       const { url, params } = payload
       const { code, data } = await updateData(url, params)
-      ElMessage.success(data)
       if (code == 0) {
+        ElMessage.success(data)
         dispatch('getDataList', { url: state.url, params: state.requestParams })
       }
     }

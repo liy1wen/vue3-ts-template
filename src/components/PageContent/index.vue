@@ -18,7 +18,7 @@
             :icon="CirclePlus"
             v-if="showCreateBtn"
             @click="handerAddNew"
-            >新建</el-button
+            >新增</el-button
           >
         </div>
       </template>

@@ -3,7 +3,7 @@ import { IRootState } from './types'
 import { userModule } from './modules/user/user'
 import { mainModule } from './modules/main/main'
 import { systemModule } from './modules/system/system'
-import { getDataList } from '@/api/system/index'
+import { analysisModule } from './modules/analysis/analysis'
 export default createStore<IRootState>({
   state: {
     username: '',
@@ -20,5 +20,5 @@ export default createStore<IRootState>({
       // commit(`SET_${dataType}LIST`, data.list)
     }
   },
-  modules: { userModule, mainModule, systemModule }
+  modules: { userModule, mainModule, systemModule, analysisModule }
 })

@@ -80,7 +80,6 @@ const modalConfigRef = computed(() => {
 
   const roleItem = modalConfig.formItems.find((item) => item.field === 'roleId')
   if (roleItem) {
-    console.log(roleList)
     roleItem.options = roleList.map((item: any) => {
       return { value: item.id, label: item.name }
     })
