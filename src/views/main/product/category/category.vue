@@ -1,18 +1,39 @@
 <template>
-  <div class="category">
-    <h2>category</h2>
+  <div>
+    <page-content
+      :tableConfig="tableConfig"
+      @edit="handleEdit"
+      @addNew="handleAdd"
+    />
+    <page-modal
+      ref="pageModalRef"
+      :modalConfig="modalConfig"
+      :editDefaultData="editDefaultData"
+      :title="modalTitle"
+      pageName="category"
+    />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import PageContent from '@/components/PageContent'
+import PageModal from '@/components/PageModal'
+import { tableConfig } from './config/tableConfig'
+import { modalConfig } from './config/modalConfig'
+import { usePageModal } from '@/hooks/use-page-modal'
 
-export default defineComponent({
-  name: 'category',
-  setup() {
-    return {}
-  }
-})
+const modalTitle = ref('')
+const editCb = () => {
+  modalTitle.value = '编辑分类'
+}
+const addCb = () => {
+  modalTitle.value = '新增分类'
+}
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
+  editCb,
+  addCb
+)
 </script>
 
 <style scoped></style>

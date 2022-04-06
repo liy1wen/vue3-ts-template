@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 15:22:46
+-->
 <template>
   <div>
     <base-chart :options="options" />
@@ -5,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import BaseChart from '../base-echart.vue'
 const props = defineProps({
   data: {
@@ -14,7 +22,7 @@ const props = defineProps({
   }
 })
 
-const options = ref({
+const options = computed(() => ({
   // legend: {
   //   top: 'top'
   // },
@@ -44,7 +52,7 @@ const options = ref({
       data: props.data
     }
   ]
-})
+}))
 </script>
 
 <style scoped></style>

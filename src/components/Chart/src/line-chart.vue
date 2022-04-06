@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 15:44:51
+-->
 <template>
   <div>
     <base-chart :options="options" />
@@ -5,20 +13,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import BaseChart from '../base-echart.vue'
 const props = defineProps({
-  dataValue: {
+  values: {
     type: Array,
     require: true
   },
-  dataName: {
+  labels: {
     type: Array,
     require: true
   }
 })
 
-const options = ref({
+const options = computed(() => ({
   legend: {},
   tooltip: {
     trigger: 'axis',
@@ -39,24 +47,24 @@ const options = ref({
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: props.dataName
+    data: props.labels
   },
   yAxis: {
     type: 'value'
   },
   series: [
     {
-      name: '分类销量统计',
+      name: '分类商品的收藏',
       type: 'line',
       stack: '总量',
       areaStyle: {},
       emphasis: {
         focus: 'series'
       },
-      data: props.dataValue
+      data: props.values
     }
   ]
-})
+}))
 </script>
 
 <style scoped></style>

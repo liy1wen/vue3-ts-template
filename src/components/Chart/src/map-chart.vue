@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import * as echarts from 'echarts'
 import BaseChart from '../base-echart.vue'
 import { dataList } from '../utils/data'
 const props = defineProps({})
 
-const options = ref({
+const options = computed(() => ({
   grid: {
     left: '0%',
     right: '2%',
@@ -95,7 +95,7 @@ const options = ref({
       data: dataList
     }
   ]
-})
+}))
 </script>
 
 <style scoped></style>

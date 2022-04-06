@@ -6,8 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BarChart: typeof import('./src/components/Chart/src/bar-chart.vue')['default']
     BaseEchart: typeof import('./src/components/Chart/base-echart.vue')['default']
-    BreadCrumbs: typeof import('./src/components/NavHeader/bread-crumbs.vue')['default']
-    Card: typeof import('./src/components/Card/index.vue')['default']
+    BreadCrumbs: typeof import('./src/components/NavHeader/src/bread-crumbs.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -46,20 +45,12 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTree: typeof import('element-plus/es')['ElTree']
-    Form: typeof import('./src/components/Form/index.vue')['default']
     LineChart: typeof import('./src/components/Chart/src/line-chart.vue')['default']
     MapChart: typeof import('./src/components/Chart/src/map-chart.vue')['default']
-    NavHeader: typeof import('./src/components/NavHeader/index.vue')['default']
-    NavMenu: typeof import('./src/components/NavMenu/index.vue')['default']
-    PageContent: typeof import('./src/components/PageContent/index.vue')['default']
-    PageModal: typeof import('./src/components/PageModal/index.vue')['default']
-    PageSearch: typeof import('./src/components/PageSearch/index.vue')['default']
     PieChart: typeof import('./src/components/Chart/src/pie-chart.vue')['default']
     RoseChart: typeof import('./src/components/Chart/src/rose-chart.vue')['default']
-    Src: typeof import('./src/components/TextLink/src/index.vue')['default']
-    StatisticalPanel: typeof import('./src/components/StatisticalPanel/index.vue')['default']
-    Table: typeof import('./src/components/Table/index.vue')['default']
-    UserOperation: typeof import('./src/components/NavHeader/user-operation.vue')['default']
+    Src: typeof import('./src/components/Card/src/index.vue')['default']
+    UserOperation: typeof import('./src/components/NavHeader/src/user-operation.vue')['default']
   }
 }
 

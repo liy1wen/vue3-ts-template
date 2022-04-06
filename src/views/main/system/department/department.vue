@@ -1,18 +1,42 @@
 <template>
-  <div class="department">
-    <h2>department</h2>
+  <div>
+    <page-content
+      :tableConfig="tableConfig"
+      ref="pageContentRef"
+      @edit="handleEdit"
+      @addNew="handleAdd"
+    ></page-content>
+    <page-modal
+      ref="pageModalRef"
+      :modalConfig="modalConfig"
+      :editDefaultData="editDefaultData"
+      :title="modalTitle"
+      pageName="department"
+    ></page-modal>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { tableConfig } from './config/tableConfig'
+import PageContent from '@/components/PageContent'
+import PageModal from '@/components/PageModal'
+import { modalConfig } from './config/modalConfig'
+import { usePageModal } from '@/hooks/use-page-modal'
+import { usePageSearch } from '@/hooks/use-page-search'
 
-export default defineComponent({
-  name: 'department',
-  setup() {
-    return {}
-  }
-})
+const modalTitle = ref('')
+const editCb = () => {
+  modalTitle.value = '编辑部门'
+}
+const addCb = () => {
+  modalTitle.value = '新增部门'
+}
+const [pageContentRef] = usePageSearch()
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
+  editCb,
+  addCb
+)
 </script>
 
 <style scoped></style>

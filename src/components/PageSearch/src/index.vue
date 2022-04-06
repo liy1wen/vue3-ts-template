@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from 'vue'
-import Form from '../Form/index.vue'
+import Form from '../../Form'
 import { Search, Refresh } from '@element-plus/icons-vue'
 const emit = defineEmits(['clickSearch'])
 const props = defineProps({

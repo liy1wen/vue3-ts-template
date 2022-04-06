@@ -1,6 +1,12 @@
 <template>
   <div>
-    <page-content :tableConfig="tableConfig" ref="pageContentRef">
+    <page-search :formConfig="formConfig" @clickSearch="handerSearch" />
+    <page-content
+      :tableConfig="tableConfig"
+      ref="pageContentRef"
+      @addNew="handleAdd"
+      @edit="handleEdit"
+    >
       <template #imgUrl="scope">
         <el-image
           style="width: 100px; height: 100px"
@@ -17,15 +23,37 @@
         <span>￥{{ $filter.formatMoney(scope.row.oldPrice) }}</span>
       </template>
     </page-content>
+    <page-modal
+      :modalConfig="modalConfig"
+      ref="pageModalRef"
+      :editDefaultData="editDefaultData"
+      :title="modalTitle"
+      pageName="goods"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import PageContent from '@/components/PageContent/index.vue'
+import PageContent from '@/components/PageContent'
+import PageSearch from '@/components/PageSearch'
+import PageModal from '@/components/PageModal'
 import { tableConfig } from './config/tableConfig'
+import { formConfig } from './config/formConfig'
+import { modalConfig } from './config/modalConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
-
-const [pageContentRef] = usePageSearch()
+import { usePageModal } from '@/hooks/use-page-modal'
+const modalTitle = ref('')
+const editCb = () => {
+  modalTitle.value = '编辑商品'
+}
+const addCb = () => {
+  modalTitle.value = '新增商品'
+}
+const [pageContentRef, handerSearch] = usePageSearch()
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
+  editCb,
+  addCb
+)
 </script>
 <style scoped></style>

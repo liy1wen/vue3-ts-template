@@ -10,11 +10,6 @@
         </el-header>
         <el-main class="page-content">
           <div class="page-info">
-            <!-- <router-view v-slot="{ Component }">
-              <transition>
-                <component :is="Component" />
-              </transition>
-            </router-view> -->
             <router-view />
           </div>
         </el-main>
@@ -25,8 +20,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import NavMenu from '@/components/NavMenu/index.vue'
-import NavHeader from '@/components/NavHeader/index.vue'
+import NavMenu from '@/components/NavMenu'
+import NavHeader from '@/components/NavHeader'
 import { useStore } from 'vuex'
 
 const store = useStore()

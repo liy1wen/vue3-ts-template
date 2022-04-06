@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 13:53:16
+ */
 import { Module } from 'vuex'
 import { IUserState } from './types'
 import { IRootState } from '../../types'
@@ -50,7 +58,7 @@ export const userModule: Module<IUserState, IRootState> = {
       commit('SET_USERINFO', userInfo.data)
       localCache.setCache('userInfo', userInfo.data)
       // 获取菜单
-      const userMenu = await getUserMenu(userInfo.data.id)
+      const userMenu = await getUserMenu(userInfo.data.role.id)
       commit('SET_USERMENU', userMenu.data)
       localCache.setCache('userMenu', userMenu.data)
       router.push('/main/analysis/overview')

@@ -20,9 +20,9 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import PageSearch from '@/components/PageSearch/index.vue'
-import PageContent from '@/components/PageContent/index.vue'
-import PageModal from '@/components/PageModal/index.vue'
+import PageSearch from '@/components/PageSearch'
+import PageContent from '@/components/PageContent'
+import PageModal from '@/components/PageModal'
 import { formConfig } from './config/formConfig'
 import { tableConfig } from './config/tableConfig'
 import { modalConfig } from './config/modalConfig'

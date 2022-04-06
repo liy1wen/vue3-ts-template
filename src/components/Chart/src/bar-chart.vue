@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 15:20:31
+-->
 <template>
   <div>
     <base-chart :options="options" />
@@ -5,21 +13,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import * as echarts from 'echarts'
 import BaseChart from '../base-echart.vue'
 const props = defineProps({
-  dataName: {
+  labels: {
     type: Array,
     require: true
   },
-  dataValue: {
+  values: {
     type: Array,
     require: true
   }
 })
 
-const options = ref({
+const options = computed(() => ({
   title: {
     text: '特性示例：渐变色 阴影 点击缩放'
   },
@@ -38,7 +46,7 @@ const options = ref({
   },
   xAxis: {
     type: 'category',
-    data: props.dataName
+    data: props.labels
   },
   yAxis: {
     type: 'value'
@@ -50,7 +58,7 @@ const options = ref({
   ],
   series: [
     {
-      data: props.dataValue,
+      data: props.values,
       type: 'bar',
       itemStyle: {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -74,7 +82,7 @@ const options = ref({
       }
     }
   ]
-})
+}))
 </script>
 
 <style scoped></style>

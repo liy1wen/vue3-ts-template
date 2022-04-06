@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 15:22:18
+-->
 <template>
   <div>
     <base-chart :options="options" />
@@ -5,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import BaseChart from '../base-echart.vue'
 const props = defineProps({
   data: {
@@ -13,7 +21,7 @@ const props = defineProps({
     require: true
   }
 })
-const options = ref({
+const options = computed(() => ({
   title: {
     // text: 'Referer of a Website',
     // subtext: 'Fake Data',
@@ -48,7 +56,7 @@ const options = ref({
       }
     }
   ]
-})
+}))
 </script>
 
 <style scoped></style>

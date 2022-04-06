@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import Form from '../Form/index.vue'
+import Form from '../../Form'
 import { useStore } from 'vuex'
 import { ref, defineProps, defineExpose, watch } from 'vue'
 const props = defineProps({

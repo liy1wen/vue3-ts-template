@@ -1602,7 +1602,8 @@
     1985: function (e, t, n) {
       ;(function (e, r) {
         var o
-        /*! https://mths.be/punycode v1.4.1 by @mathias */ ;(function (a) {
+          /*! https://mths.be/punycode v1.4.1 by @mathias */
+        ;(function (a) {
           t && t.nodeType, e && e.nodeType
           var l = 'object' == typeof r && r
           l.global !== l && l.window !== l && l.self
@@ -13758,14 +13759,15 @@
     '2ef0': function (e, t, n) {
       ;(function (e, r) {
         var o
-        /**
-         * @license
-         * Lodash <https://lodash.com/>
-         * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
-         * Released under MIT license <https://lodash.com/license>
-         * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
-         * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-         */ ;(function () {
+          /**
+           * @license
+           * Lodash <https://lodash.com/>
+           * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+           * Released under MIT license <https://lodash.com/license>
+           * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+           * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+           */
+        ;(function () {
           var a,
             l = '4.17.21',
             i = 200,

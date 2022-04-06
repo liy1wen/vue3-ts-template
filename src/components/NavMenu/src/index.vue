@@ -3,7 +3,7 @@
     <router-link to="/" class="menu-link">
       <div class="logo">
         <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-        <span v-if="!collapse" class="title">Vue3+TS</span>
+        <span v-if="!collapse" class="title">BOOMPLAY</span>
       </div>
     </router-link>
 
@@ -52,9 +52,8 @@
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { Iphone } from '@element-plus/icons-vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 const store = useStore()
-const router = useRouter()
 const route = useRoute()
 const userMenus = computed(() => store.state.userModule.userMenu)
 const collapse = computed(() => store.state.mainModule.isCollapse)

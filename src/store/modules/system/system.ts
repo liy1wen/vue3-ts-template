@@ -22,6 +22,8 @@ export const systemModule: Module<ISystemState, IRootState> = {
     menuCount: 0,
     departmentList: [],
     departmentCount: 0,
+    categoryList: [],
+    categoryCount: 0,
     url: '',
     requestParams: {}
   },
@@ -62,6 +64,12 @@ export const systemModule: Module<ISystemState, IRootState> = {
     },
     SET_DEPARTMENTCOUNT(state: ISystemState, count: number) {
       state.departmentCount = count
+    },
+    SET_CATEGORYLIST(state: ISystemState, list: any[]) {
+      state.categoryList = list
+    },
+    SET_CATEGORYCOUNT(state: ISystemState, count: number) {
+      state.categoryCount = count
     }
   },
   actions: {

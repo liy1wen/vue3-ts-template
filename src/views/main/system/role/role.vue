@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-06 20:45:20
+-->
 <template>
   <div>
     <page-search :formConfig="formConfig" @clickSearch="handerSearch" />
@@ -32,9 +40,9 @@
 
 <script lang="ts" setup>
 import { ref, computed, nextTick } from 'vue'
-import PageSearch from '@/components/PageSearch/index.vue'
-import PageContent from '@/components/PageContent/index.vue'
-import PageModal from '@/components/PageModal/index.vue'
+import PageSearch from '@/components/PageSearch'
+import PageContent from '@/components/PageContent'
+import PageModal from '@/components/PageModal'
 import { formConfig } from './config/formConfig'
 import { modalConfig } from './config/modalConfig'
 import { tableConfig } from './config/tableConfig'

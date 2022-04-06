@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import Table from '../Table/index.vue'
+import Table from '../../Table/src/index.vue'
 import {
   defineProps,
   computed,
