@@ -13,10 +13,9 @@ import LoginPanel from './component/login-panel.vue'
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/img/login-bg.jpg');
-  background-size: cover;
+  background: url('../../assets/img/login.png') left no-repeat;
+  background-position: left;
 }
 </style>

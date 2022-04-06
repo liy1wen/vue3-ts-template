@@ -3,7 +3,7 @@
     <router-link to="/" class="menu-link">
       <div class="logo">
         <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-        <span v-if="!collapse" class="title">Vue3+TS</span>
+        <span v-if="!collapse" class="title">Vue3Admin</span>
       </div>
     </router-link>
 
