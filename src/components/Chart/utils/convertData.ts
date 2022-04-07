@@ -1,9 +1,9 @@
 import { geoCoordMap } from './geoCoordMap'
 
 export const convertData = (data: any) => {
-  let res = []
-  for (var i = 0; i < data.length; i++) {
-    let geoCoord = geoCoordMap[data[i].name]
+  const res = []
+  for (let i = 0; i < data.length; i++) {
+    const geoCoord = geoCoordMap[data[i].name]
     if (geoCoord) {
       res.push({
         name: data[i].name,

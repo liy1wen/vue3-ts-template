@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h1 class="title animate__animated animate__backInDown">后台管理系统</h1>
+  <div class="login-panel">
+    <h1 class="title animate__animated animate__backInDown">
+      i依依后台管理系统
+    </h1>
     <el-tabs type="border-card" stretch v-model="activeName" class="login-box">
       <el-tab-pane name="account">
         <template #label>
@@ -58,51 +60,60 @@ const login = () => {
 </script>
 
 <style scoped lang="less">
-.title {
-  text-align: center;
+.login-panel {
+  margin-left: 40%;
+  .title {
+    text-align: center;
+    color: #409eff;
+  }
+  .login-box {
+    width: 320px;
+    :deep(.el-tabs__content) {
+      padding: 25px 15px;
+    }
+    :deep(.el-tabs__item) {
+      height: 46px;
+      line-height: 46px;
+      background: #f4f4f5;
+      border-color: #f4f4f5 !important;
+    }
+    :deep(.is-active) {
+      border-color: transparent !important;
+    }
+    .custom-tabs-label .el-icon {
+      vertical-align: middle;
+    }
+    .custom-tabs-label span {
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    .tab-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .el-form :deep(.el-form-item__label) {
+      font-weight: bold;
+    }
+  }
+  .password-operation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .remember-password :deep .forgotPassword {
+      font-weight: bold;
+    }
+  }
+  .login-button {
+    width: 100%;
+    border-radius: 0;
+    margin-top: 10px;
+  }
 }
-.login-box {
-  width: 320px;
-  :deep(.el-tabs__content) {
-    padding: 25px 15px;
+@media screen and (max-width: 1290px) {
+  .login-panel {
+    margin-left: 0;
   }
-  :deep(.el-tabs__item) {
-    height: 46px;
-    line-height: 46px;
-    background: #f4f4f5;
-    border-color: #f4f4f5 !important;
-  }
-  :deep(.is-active) {
-    border-color: transparent !important;
-  }
-  .custom-tabs-label .el-icon {
-    vertical-align: middle;
-  }
-  .custom-tabs-label span {
-    vertical-align: middle;
-    margin-left: 4px;
-  }
-  .tab-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .el-form :deep(.el-form-item__label) {
-    font-weight: bold;
-  }
-}
-.password-operation {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .remember-password :deep .forgotPassword {
-    font-weight: bold;
-  }
-}
-.login-button {
-  width: 100%;
-  border-radius: 0;
-  margin-top: 10px;
 }
 </style>

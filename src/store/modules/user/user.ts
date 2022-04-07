@@ -61,7 +61,7 @@ export const userModule: Module<IUserState, IRootState> = {
       const userMenu = await getUserMenu(userInfo.data.role.id)
       commit('SET_USERMENU', userMenu.data)
       localCache.setCache('userMenu', userMenu.data)
-      router.push('/main/analysis/overview')
+      router.replace('/main/analysis/overview')
     },
     loginOut() {
       localCache.clearCache()

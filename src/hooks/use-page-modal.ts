@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import PageModal from '@/components/PageModal/index.vue'
+import PageModal from '@/components/PageModal/src/index.vue'
 type callBackFn = (row?: any) => void
 export const usePageModal = (editCb?: callBackFn, addCb?: callBackFn) => {
   const pageModalRef = ref<InstanceType<typeof PageModal>>()
