@@ -5,7 +5,14 @@ export const modalConfig: IForm = {
       field: 'name',
       label: '名称',
       placeholder: '请输入名称',
-      type: 'input'
+      type: 'input',
+      rule: [
+        {
+          required: true,
+          message: 'Please input name',
+          trigger: 'blur'
+        }
+      ]
     },
     {
       field: 'leader',

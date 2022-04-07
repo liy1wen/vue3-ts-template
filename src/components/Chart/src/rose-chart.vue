@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue'
+import { defineProps, computed } from 'vue'
 import BaseChart from '../base-echart.vue'
 const props = defineProps({
   data: {

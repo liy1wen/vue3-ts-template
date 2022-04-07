@@ -3,7 +3,13 @@
     <div class="header">
       <slot name="header"></slot>
     </div>
-    <el-form :label-width="labelWidth" class="form-content" :size="size">
+    <el-form
+      :label-width="labelWidth"
+      class="form-content"
+      :size="size"
+      ref="ruleFormRef"
+      :model="modelValue"
+    >
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
@@ -11,6 +17,7 @@
               :label="item.label"
               :style="formItemStyle"
               :rules="item.rule"
+              :prop="item.field"
               v-if="!item.isHidden"
             >
               <template v-if="item.type === 'input'">
@@ -103,8 +110,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType, ref, watch, defineEmits } from 'vue'
-import { IFormItem } from './types'
+import { defineProps, PropType, defineEmits, ref, defineExpose } from 'vue'
+import type { FormInstance } from 'element-plus'
+import { IFormItem } from '../types'
+const ruleFormRef = ref<FormInstance>()
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -142,6 +151,14 @@ const emit = defineEmits(['update:modelValue'])
 const handleValueChange = (value: any, field: any) => {
   emit('update:modelValue', { ...props.modelValue, [field]: value })
 }
+
+const submitForm = async () => {
+  await ruleFormRef.value?.validate((valid) => valid)
+}
+
+defineExpose({
+  submitForm
+})
 </script>
 
 <style scoped lang="less">

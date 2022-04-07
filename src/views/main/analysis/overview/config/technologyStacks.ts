@@ -8,7 +8,7 @@ export const technologyStacks = [
   { label: 'UI 框架', value: 'Element Plus' },
   { label: '可视化', value: 'Echart5.x' },
   { label: '富文本', value: 'WangEditor' },
-  { label: '工具库', value: 'dayjs + countup.js + animate.css' },
+  { label: '工具库', value: 'dayjs + countup.js + animate.css + wangeditor' },
   { label: 'CSS 预编译', value: 'Sass / Less' },
   { label: 'HTTP 工具', value: 'Axios' },
   { label: 'Git Hook 工具', value: 'husky' },

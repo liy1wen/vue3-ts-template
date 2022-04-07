@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import * as echarts from 'echarts'
 import BaseChart from '../base-echart.vue'
 import { dataList } from '../utils/data'
-const props = defineProps({})
+// const props = defineProps({})
 
 const options = computed(() => ({
   grid: {
@@ -21,7 +21,7 @@ const options = computed(() => ({
   tooltip: {
     // triggerOn: 'click',
     trigger: 'item',
-    formatter: function (e: any, t: any, n: any) {
+    formatter: function (e: any) {
       return 0.5 == e.value
         ? e.name + '：总销量'
         : e.seriesName + '<br />' + e.name + '：' + e.value

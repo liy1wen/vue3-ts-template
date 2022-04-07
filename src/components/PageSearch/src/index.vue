@@ -38,10 +38,10 @@ const formData = ref(originFormData)
 
 const resetData = () => {
   formData.value = originFormData
-  emit('clickSearch')
+  emit('clickSearch', {})
 }
 const search = () => {
-  emit('clickSearch', formData.value)
+  emit('clickSearch', { ...formData.value })
 }
 </script>
 

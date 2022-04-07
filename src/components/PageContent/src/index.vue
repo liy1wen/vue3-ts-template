@@ -5,7 +5,7 @@
       v-bind="tableConfig"
       :dataCount="dataCount"
       v-model:pageConfig="pageInfo"
-      v-if="showQueryBtn"
+      @getData="getDataList"
     >
       <!-- 常规插槽 -->
       <template #handerHeader>
@@ -67,15 +67,8 @@
 </template>
 
 <script setup lang="ts">
-import Table from '../../Table/src/index.vue'
-import {
-  defineProps,
-  computed,
-  defineExpose,
-  ref,
-  watch,
-  defineEmits
-} from 'vue'
+import Table from '../../Table'
+import { defineProps, computed, defineExpose, ref, defineEmits } from 'vue'
 import { useStore } from 'vuex'
 import { Delete, Edit, CirclePlus } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -91,17 +84,18 @@ const pageInfo = ref({
   pageSize: 10,
   currentPage: 1
 })
-watch(pageInfo, () => getDataList())
+const queryParams = ref({})
+// watch(pageInfo, () => getDataList())
 const url = (props as any).tableConfig.requestUrl
 const store = useStore()
 // 获取列表数据
-const getDataList = (params: any = {}) => {
+const getDataList = () => {
   store.dispatch('systemModule/getDataList', {
     url,
     params: {
       offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
       size: pageInfo.value.pageSize,
-      ...params
+      ...queryParams.value
     }
   })
 }
@@ -121,7 +115,7 @@ const otherSlotList = props.tableConfig?.propList.filter((item: any) => {
 const showCreateBtn = useBtnPermissions(url, 'create')
 const showDeleteBtn = useBtnPermissions(url, 'delete')
 const showUpdateBtn = useBtnPermissions(url, 'update')
-const showQueryBtn = useBtnPermissions(url, 'query')
+// const showQueryBtn = useBtnPermissions(url, 'query')
 
 // 按钮操作处理逻辑
 const handleEdit = (row: any) => emit('edit', row)
@@ -147,7 +141,9 @@ const handleDelete = (row: any) => {
     })
 }
 defineExpose({
-  getDataList
+  getDataList,
+  pageInfo,
+  queryParams
 })
 </script>
 

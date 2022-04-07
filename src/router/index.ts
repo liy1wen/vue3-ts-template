@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @Version: 2.0
+ * @Autor: Seven
+ * @Date: 2022-04-02 11:56:43
+ * @LastEditors: Seven
+ * @LastEditTime: 2022-04-07 10:05:20
+ */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache'
 
@@ -40,10 +48,14 @@ const router = createRouter({
 
 // 导航守卫
 router.beforeEach((to) => {
+  const token = localCache.getCache('token')
   if (to.path !== '/login') {
-    const token = localCache.getCache('token')
     if (!token) {
       return '/login'
+    }
+  } else {
+    if (token) {
+      return '/main'
     }
   }
 

@@ -1,18 +1,9 @@
 <template>
-  <div class="chat">
-    <h2>chat</h2>
-  </div>
+  <Editor />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'chat',
-  setup() {
-    return {}
-  }
-})
+<script setup lang="ts">
+import Editor from '@/components/Editor'
 </script>
 
-<style scoped></style>
+<style lang="less" scoped></style>

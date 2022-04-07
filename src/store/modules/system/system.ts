@@ -24,6 +24,8 @@ export const systemModule: Module<ISystemState, IRootState> = {
     departmentCount: 0,
     categoryList: [],
     categoryCount: 0,
+    storyList: [],
+    storyCount: 0,
     url: '',
     requestParams: {}
   },
@@ -70,6 +72,12 @@ export const systemModule: Module<ISystemState, IRootState> = {
     },
     SET_CATEGORYCOUNT(state: ISystemState, count: number) {
       state.categoryCount = count
+    },
+    SET_STORYLIST(state: ISystemState, list: any[]) {
+      state.storyList = list
+    },
+    SET_STORYCOUNT(state: ISystemState, count: number) {
+      state.storyCount = count
     }
   },
   actions: {

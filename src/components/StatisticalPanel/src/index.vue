@@ -34,7 +34,7 @@ import {
   Coin
 } from '@element-plus/icons-vue'
 import { CountUp } from 'countup.js'
-import type { CountUpOptions } from 'countup.js'
+// import type { CountUpOptions } from 'countup.js'
 
 const props = defineProps({
   panelData: {

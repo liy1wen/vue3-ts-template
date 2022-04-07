@@ -4,7 +4,7 @@
  * @Autor: Seven
  * @Date: 2022-04-02 11:56:43
  * @LastEditors: Seven
- * @LastEditTime: 2022-04-06 13:53:16
+ * @LastEditTime: 2022-04-07 10:07:37
  */
 import { Module } from 'vuex'
 import { IUserState } from './types'
@@ -64,8 +64,15 @@ export const userModule: Module<IUserState, IRootState> = {
       router.replace('/main/analysis/overview')
     },
     loginOut() {
+      const name = localCache.getCache('name')
+      const password = localCache.getCache('password')
       localCache.clearCache()
-      router.replace('/login')
+      if (name) {
+        localCache.setCache('name', name)
+        localCache.setCache('password', password)
+      }
+      router.replace({ path: '/login' })
+      // location.reload()
     }
   }
 }

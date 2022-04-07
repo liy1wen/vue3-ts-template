@@ -1,11 +1,3 @@
-/*
- * @Description:
- * @Version: 2.0
- * @Autor: Seven
- * @Date: 2022-04-02 11:56:43
- * @LastEditors: Seven
- * @LastEditTime: 2022-04-06 20:28:15
- */
 export const tableConfig = {
   propList: [
     { prop: 'name', label: '用户名', width: '180px' },

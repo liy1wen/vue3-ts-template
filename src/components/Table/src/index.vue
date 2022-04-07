@@ -54,8 +54,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits } from 'vue'
-const emit = defineEmits(['update:pageConfig'])
+import { defineProps, defineEmits } from 'vue'
+const emit = defineEmits(['update:pageConfig', 'getData'])
 const props = defineProps({
   dataList: {
     type: Array,
@@ -104,10 +104,12 @@ const handleSelectionChange = (value: any) => {
 }
 const handleSizeChange = (pageSize: number) => {
   emit('update:pageConfig', { ...props.pageConfig, pageSize })
+  emit('getData')
 }
 
 const handleCurrentChange = (currentPage: number) => {
   emit('update:pageConfig', { ...props.pageConfig, currentPage })
+  emit('getData')
 }
 </script>
 

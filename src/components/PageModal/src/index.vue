@@ -7,8 +7,7 @@
       center
       destroy-on-close
     >
-      <Form v-bind="modalConfig" v-model="formData" />
-      <slot></slot>
+      <Form v-bind="modalConfig" v-model="formData" ref="formRef" />
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
@@ -45,6 +44,7 @@ const props = defineProps({
     default: () => ({})
   }
 })
+const formRef = ref<InstanceType<typeof Form>>()
 const dialogVisible = ref(false)
 const formData = ref<any>({})
 const store = useStore()
@@ -56,7 +56,9 @@ watch(
     }
   }
 )
-const submit = () => {
+const submit = async () => {
+  await formRef.value.submitForm()
+
   if (Object.keys(props.editDefaultData).length) {
     // 编辑
     store.dispatch('systemModule/updateData', {
