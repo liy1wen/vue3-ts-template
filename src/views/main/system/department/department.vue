@@ -19,8 +19,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { tableConfig } from './config/tableConfig'
-import PageContent from '@/components/PageContent'
-import PageModal from '@/components/PageModal'
 import { modalConfig } from './config/modalConfig'
 import { usePageModal } from '@/hooks/use-page-modal'
 import { usePageSearch } from '@/hooks/use-page-search'

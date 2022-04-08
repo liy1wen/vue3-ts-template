@@ -17,8 +17,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import PageContent from '@/components/PageContent'
-import PageModal from '@/components/PageModal'
 import { tableConfig } from './config/tableConfig'
 import { modalConfig } from './config/modalConfig'
 import { usePageModal } from '@/hooks/use-page-modal'

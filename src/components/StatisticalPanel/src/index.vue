@@ -27,12 +27,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue'
-import {
-  Histogram,
-  ShoppingBag,
-  Collection,
-  Coin
-} from '@element-plus/icons-vue'
 import { CountUp } from 'countup.js'
 // import type { CountUpOptions } from 'countup.js'
 

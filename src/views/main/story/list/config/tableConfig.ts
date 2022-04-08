@@ -1,4 +1,5 @@
-export const tableConfig = {
+import { ITable } from '@/components/Table/types'
+export const tableConfig: ITable = {
   propList: [
     { prop: 'title', label: '标题', width: '180px' },
     { prop: 'content', label: '内容', slotName: 'content' },

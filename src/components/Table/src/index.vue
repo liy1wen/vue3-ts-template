@@ -54,12 +54,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, PropType } from 'vue'
+import { IPropList } from '../types'
 const emit = defineEmits(['update:pageConfig', 'getData'])
 const props = defineProps({
   dataList: {
     type: Array,
-    require: true,
     default: () => []
   },
   dataCount: {
@@ -71,8 +71,7 @@ const props = defineProps({
     default: () => ({ currentPage: 1, pageSize: 10 })
   },
   propList: {
-    type: Array,
-    require: true,
+    type: Array as PropType<IPropList[]>,
     default: () => []
   },
   headerStyle: {

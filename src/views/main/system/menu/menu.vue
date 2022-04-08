@@ -6,7 +6,6 @@
 
 <script setup lang="ts">
 import { tableConfig } from './config/tableConfig'
-import PageContent from '@/components/PageContent'
 </script>
 
 <style scoped></style>

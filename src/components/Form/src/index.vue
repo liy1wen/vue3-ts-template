@@ -144,6 +144,9 @@ const props = defineProps({
   size: {
     type: String,
     default: 'default'
+  },
+  ruleName: {
+    type: Object
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -155,7 +158,7 @@ const handleValueChange = (value: any, field: any) => {
 const submitForm = async () => {
   await ruleFormRef.value?.validate((valid) => valid)
 }
-
+console.log(props.formItems, 'formItems', props.ruleName)
 defineExpose({
   submitForm
 })

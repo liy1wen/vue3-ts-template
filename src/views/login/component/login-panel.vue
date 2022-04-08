@@ -44,7 +44,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Iphone, UserFilled } from '@element-plus/icons-vue'
 import AccountLogin from './account-login.vue'
 import PhoneLogin from './phone-login.vue'
 

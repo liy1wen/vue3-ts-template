@@ -70,7 +70,6 @@
 import Table from '../../Table'
 import { defineProps, computed, defineExpose, ref, defineEmits } from 'vue'
 import { useStore } from 'vuex'
-import { Delete, Edit, CirclePlus } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useBtnPermissions } from '@/hooks/use-btn-permissions'
 const props = defineProps({

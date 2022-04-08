@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import PageContent from '@/components/PageContent'
-import PageSearch from '@/components/PageSearch'
 import { tableConfig } from './config/tableConfig'
 import { formConfig } from './config/formConfig'
 import { usePageSearch } from '@/hooks/use-page-search'

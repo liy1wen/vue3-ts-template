@@ -32,9 +32,6 @@
 
 <script lang="ts" setup>
 import { ref, computed, nextTick } from 'vue'
-import PageSearch from '@/components/PageSearch'
-import PageContent from '@/components/PageContent'
-import PageModal from '@/components/PageModal'
 import { formConfig } from './config/formConfig'
 import { modalConfig } from './config/modalConfig'
 import { tableConfig } from './config/tableConfig'

@@ -51,7 +51,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { Iphone } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
 const store = useStore()
 const route = useRoute()

@@ -11,7 +11,13 @@
       <el-dropdown-menu>
         <el-dropdown-item>个人中心</el-dropdown-item>
         <el-dropdown-item>首页</el-dropdown-item>
-        <el-dropdown-item>github</el-dropdown-item>
+        <el-dropdown-item>
+          <el-link
+            href="https://github.com/liy1wen/vue3-ts-template.git"
+            target="_blank"
+            >github</el-link
+          ></el-dropdown-item
+        >
         <el-dropdown-item divided @click="loginOut">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -19,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { CaretBottom } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 

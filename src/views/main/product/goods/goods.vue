@@ -35,9 +35,6 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import PageContent from '@/components/PageContent'
-import PageSearch from '@/components/PageSearch'
-import PageModal from '@/components/PageModal'
 import { tableConfig } from './config/tableConfig'
 import { formConfig } from './config/formConfig'
 import { modalConfig } from './config/modalConfig'

@@ -14,20 +14,54 @@
       :title="modalTitle"
       pageName="users"
     ></page-modal>
+
+    <el-form ref="ruleFormRef" :model="ruleForm" label-width="120px">
+      <el-form-item label="Password" prop="pass" :rules="passRule">
+        <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm(ruleFormRef)"
+          >Submit</el-button
+        >
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import PageSearch from '@/components/PageSearch'
-import PageContent from '@/components/PageContent'
-import PageModal from '@/components/PageModal'
 import { formConfig } from './config/formConfig'
 import { tableConfig } from './config/tableConfig'
 import { modalConfig } from './config/modalConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
+import type { FormInstance } from 'element-plus'
+const ruleFormRef = ref<FormInstance>()
+const ruleForm = ref({
+  pass: ''
+})
+
+const validatePass = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('Please input the password'))
+  } else {
+    callback()
+  }
+}
+const passRule = ref([{ validator: validatePass, trigger: 'blur' }])
+
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
 
 const modalTitle = ref('')
 // pageModal相关的hook逻辑
