@@ -11,6 +11,12 @@
       :model="modelValue"
     >
       <el-row>
+        <!-- <el-col v-bind="colLayout">
+          <el-form-item label="名称" prop="name" :rules="rule">
+            <el-input v-model="ruleForm.name" />
+          </el-form-item>
+        </el-col> -->
+
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
@@ -144,11 +150,22 @@ const props = defineProps({
   size: {
     type: String,
     default: 'default'
-  },
-  ruleName: {
-    type: Object
   }
+  // ruleName: {
+  //   type: Object
+  // }
 })
+
+// const ruleForm = ref({ name: '' })
+// const validateName = (rule: any, value: any, callback: any) => {
+//   if (value === '') {
+//     callback(new Error('Please input name'))
+//   } else {
+//     callback()
+//   }
+// }
+// const rule = ref([{ validator: validateName, trigger: 'blur' }])
+
 const emit = defineEmits(['update:modelValue'])
 
 const handleValueChange = (value: any, field: any) => {
@@ -158,7 +175,7 @@ const handleValueChange = (value: any, field: any) => {
 const submitForm = async () => {
   await ruleFormRef.value?.validate((valid) => valid)
 }
-console.log(props.formItems, 'formItems', props.ruleName)
+console.log(props.formItems, 'formItems')
 defineExpose({
   submitForm
 })

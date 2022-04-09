@@ -71,6 +71,7 @@ import Table from '../../Table'
 import { defineProps, computed, defineExpose, ref, defineEmits } from 'vue'
 import { useStore } from 'vuex'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { Delete, CirclePlus, Edit } from '@element-plus/icons-vue'
 import { useBtnPermissions } from '@/hooks/use-btn-permissions'
 const props = defineProps({
   tableConfig: {

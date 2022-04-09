@@ -80,6 +80,10 @@ const submit = async () => {
   }
   dialogVisible.value = false
 }
+console.log(
+  props.modalConfig,
+  '==================================================='
+)
 defineExpose({
   dialogVisible
 })

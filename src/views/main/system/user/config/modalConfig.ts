@@ -41,7 +41,18 @@ export const modalConfig: IForm = {
       type: 'input',
       label: '电话号码',
       placeholder: '请输入电话号码',
-      rule: [{ validator: validatePass, trigger: 'blur' }]
+      rule: [
+        {
+          validator: (rule: any, value: any, callback: any) => {
+            if (value === '') {
+              callback(new Error('Please input cellphone'))
+            } else {
+              callback()
+            }
+          },
+          trigger: 'blur'
+        }
+      ]
     },
     {
       field: 'departmentId',
