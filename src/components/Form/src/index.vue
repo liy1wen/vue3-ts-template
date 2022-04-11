@@ -13,7 +13,7 @@
       <el-row>
         <!-- <el-col v-bind="colLayout">
           <el-form-item label="名称" prop="name" :rules="rule">
-            <el-input v-model="ruleForm.name" />
+            <el-input v-model="formData.name" />
           </el-form-item>
         </el-col> -->
 
@@ -116,7 +116,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType, defineEmits, ref, defineExpose } from 'vue'
+import {
+  defineProps,
+  PropType,
+  defineEmits,
+  ref,
+  defineExpose,
+  watch
+} from 'vue'
 import type { FormInstance } from 'element-plus'
 import { IFormItem } from '../types'
 const ruleFormRef = ref<FormInstance>()
@@ -181,11 +188,4 @@ defineExpose({
 })
 </script>
 
-<style scoped lang="less">
-.form-container {
-  // padding-top: 18px;
-}
-.footer {
-  // text-align: right;
-}
-</style>
+<style scoped lang="less"></style>

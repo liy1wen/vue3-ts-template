@@ -1,13 +1,14 @@
 import { IForm } from '@/components/Form/types'
-
-const validatePass = (rule: any, value: any, callback: any) => {
-  if (value === '') {
+import { rules } from '@/utils/validator'
+const validateCellphone = (rule: any, value: any, callback: any) => {
+  if (!value) {
     callback(new Error('Please input cellphone'))
+  } else if (!rules.Mobile(value)) {
+    callback('Please input correct cellphone')
   } else {
     callback()
   }
 }
-// const cellphoneRule = [{ validator: validatePass, trigger: 'blur' }]
 export const modalConfig: IForm = {
   formItems: [
     {
@@ -43,15 +44,15 @@ export const modalConfig: IForm = {
       placeholder: '请输入电话号码',
       rule: [
         {
-          validator: (rule: any, value: any, callback: any) => {
-            if (value === '') {
-              callback(new Error('Please input cellphone'))
-            } else {
-              callback()
-            }
-          },
+          required: true,
+          validator: validateCellphone,
           trigger: 'blur'
         }
+        // {
+        //   required: true,
+        //   message: '请输入正确手机号码',
+        //   validator: (rule: any, value: any) => /^1\d{10}$/.test(value)
+        // }
       ]
     },
     {
@@ -87,5 +88,4 @@ export const modalConfig: IForm = {
     padding: '15px 20px',
     marginBottom: '0px'
   }
-  // ruleName: validatePass
 }

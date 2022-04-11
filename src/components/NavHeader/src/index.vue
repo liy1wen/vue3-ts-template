@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Expand, Fold } from '@element-plus/icons-vue'
 import { useStore } from 'vuex'
 import UserOperation from './user-operation.vue'
 import BreadCrumbs from './bread-crumbs.vue'
