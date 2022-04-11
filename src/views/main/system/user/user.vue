@@ -14,17 +14,6 @@
       :title="modalTitle"
       pageName="users"
     ></page-modal>
-
-    <el-form ref="ruleFormRef" :model="ruleForm" label-width="120px">
-      <el-form-item label="Password" prop="pass" :rules="passRule">
-        <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm(ruleFormRef)"
-          >Submit</el-button
-        >
-      </el-form-item>
-    </el-form>
   </div>
 </template>
 
