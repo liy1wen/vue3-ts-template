@@ -26,31 +26,6 @@ import { modalConfig } from './config/modalConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
 import type { FormInstance } from 'element-plus'
-const ruleFormRef = ref<FormInstance>()
-const ruleForm = ref({
-  pass: ''
-})
-
-const validatePass = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('Please input the password'))
-  } else {
-    callback()
-  }
-}
-const passRule = ref([{ validator: validatePass, trigger: 'blur' }])
-
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
-  })
-}
 
 const modalTitle = ref('')
 // pageModal相关的hook逻辑

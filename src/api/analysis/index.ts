@@ -1,4 +1,4 @@
-import request from '@/service/request.js'
+import lRequest from '@/service'
 import { IResponse } from '../types'
 
 enum AnalysisApi {
@@ -10,25 +10,31 @@ enum AnalysisApi {
   totalAmount = '/goods/amount/list'
 }
 // 每个分类商品的销量
-export const getCategorySale = (): IResponse =>
-  request.get(AnalysisApi.categorySale)
+export const getCategorySale = () =>
+  lRequest.get<IResponse>({ url: AnalysisApi.categorySale })
 
 // 每个分类商品的数量
-export const getCategoryCount = (): IResponse =>
-  request.get(AnalysisApi.categoryCount, { showLoading: false })
+export const getCategoryCount = () =>
+  lRequest.get<IResponse>({
+    url: AnalysisApi.categoryCount,
+    showLoading: false
+  })
 
 // 不同城市商品销量
-export const getCitySale = (): IResponse =>
-  request.get(AnalysisApi.citySale, { showLoading: false })
+export const getCitySale = () =>
+  lRequest.get<IResponse>({ url: AnalysisApi.citySale, showLoading: false })
 
 // 分类商品的收藏
-export const getCategoryCollection = (): IResponse =>
-  request.get(AnalysisApi.categoryCollection, { showLoading: false })
+export const getCategoryCollection = () =>
+  lRequest.get<IResponse>({
+    url: AnalysisApi.categoryCollection,
+    showLoading: false
+  })
 
 // 销量前10的商品数量分类商品的收藏
-export const getTopSale = (): IResponse =>
-  request.get(AnalysisApi.topSale, { showLoading: false })
+export const getTopSale = () =>
+  lRequest.get<IResponse>({ url: AnalysisApi.topSale, showLoading: false })
 
 // 商品数据统计的数量
-export const getTotalAmount = (): IResponse =>
-  request.get(AnalysisApi.totalAmount, { showLoading: false })
+export const getTotalAmount = () =>
+  lRequest.get<IResponse>({ url: AnalysisApi.totalAmount, showLoading: false })

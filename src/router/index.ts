@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/main',
     name: 'main',
-    redirect: '/main/analysis/overview',
+    redirect: '/main/analysis/dashboard',
     component: () => import('@/views/main/index.vue'),
     meta: {
       title: '核心技术'
