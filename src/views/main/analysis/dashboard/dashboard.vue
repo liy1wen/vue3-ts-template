@@ -112,7 +112,7 @@ const categoryCollectioData = computed(() => {
     height: 300px;
   }
   .panel-group {
-    margin-bottom: 20px;
+    margin-bottom: @spacing-base;
     .card-panel {
       cursor: pointer;
     }

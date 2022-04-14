@@ -50,12 +50,12 @@ const search = () => {
   padding-top: 18px;
   .title {
     font-size: 30px;
-    padding: 20px 0;
+    padding: @spacing-base 0;
     font-weight: bold;
   }
   .buttons {
     text-align: right;
-    padding: 0 20px 20px 0;
+    padding: 0 @spacing-base @spacing-base 0;
   }
 }
 </style>

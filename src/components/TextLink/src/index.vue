@@ -20,7 +20,7 @@ defineProps({
 <style scoped lang="less">
 .text-box {
   margin: 0;
-  padding-left: 20px;
+  padding-left: @spacing-base;
   .text-item {
     margin-top: 6px;
     .text-label {

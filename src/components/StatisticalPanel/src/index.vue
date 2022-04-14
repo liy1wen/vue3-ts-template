@@ -62,7 +62,7 @@ onMounted(() => {
       line-height: 18px;
       color: rgba(0, 0, 0, 0.45);
       font-size: 18px;
-      margin-bottom: 20px;
+      margin-bottom: @spacing-base;
     }
     .count-num {
       font-weight: 700;

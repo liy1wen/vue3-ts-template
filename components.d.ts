@@ -42,8 +42,6 @@ declare module 'vue' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTree: typeof import('element-plus/es')['ElTree']
     LineChart: typeof import('./src/components/Chart/src/line-chart.vue')['default']
     MapChart: typeof import('./src/components/Chart/src/map-chart.vue')['default']
@@ -54,4 +52,4 @@ declare module 'vue' {
   }
 }
 
-export {}
+export { }

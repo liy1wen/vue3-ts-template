@@ -19,10 +19,10 @@ import type Editor from 'wangeditor'
 import hljs from 'highlight.js'
 import { useStore } from 'vuex'
 const store = useStore()
-export interface EditorInfo {
-  html: string
-  text: string
-}
+// export interface EditorInfo {
+//   html: string
+//   text: string
+// }
 const storyInfo = ref({
   title: '',
   content: ''
@@ -66,9 +66,9 @@ const syncText = (newHtml: any) => {
 
 <style scoped lang="less">
 .editor-container {
-  padding: 20px;
+  padding: @spacing-base;
   .title-box {
-    margin-bottom: 20px;
+    margin-bottom: @spacing-base;
     display: flex;
     align-items: center;
     width: 300px;
@@ -78,7 +78,7 @@ const syncText = (newHtml: any) => {
     }
   }
   .submit-btn {
-    margin-top: 20px;
+    margin-top: @spacing-base;
   }
   :deep(.w-e-text-container) {
     text-align: left;
@@ -86,7 +86,7 @@ const syncText = (newHtml: any) => {
   .syncContent {
     border: 1px solid #ccc;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: @spacing-base;
     text-align: left;
   }
 }

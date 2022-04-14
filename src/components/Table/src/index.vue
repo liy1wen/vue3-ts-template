@@ -118,14 +118,14 @@ const handleCurrentChange = (currentPage: number) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 0px 20px;
+  padding: 0px 0px @spacing-base;
   .header-title {
     font-size: 20px;
     font-weight: bold;
   }
 }
 .table-footer {
-  margin-top: 20px;
+  margin-top: @spacing-base;
   display: flex;
   justify-content: flex-end;
 }

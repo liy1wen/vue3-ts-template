@@ -176,7 +176,7 @@ const message = ref('The webmaster said that you can not enter this page...')
       line-height: 40px;
       color: #1482f0;
       opacity: 0;
-      margin-bottom: 20px;
+      margin-bottom: @spacing-base;
       animation-name: slideUp;
       animation-duration: 0.5s;
       animation-fill-mode: forwards;

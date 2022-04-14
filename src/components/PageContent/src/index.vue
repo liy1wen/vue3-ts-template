@@ -149,7 +149,7 @@ defineExpose({
 
 <style scoped lang="less">
 .table-content {
-  padding: 20px;
-  border-top: 20px solid #f0f2f5;
+  padding: @spacing-base;
+  border-top: @spacing-base solid #f0f2f5;
 }
 </style>

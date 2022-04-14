@@ -11,12 +11,6 @@
       :model="modelValue"
     >
       <el-row>
-        <!-- <el-col v-bind="colLayout">
-          <el-form-item label="名称" prop="name" :rules="rule">
-            <el-input v-model="formData.name" />
-          </el-form-item>
-        </el-col> -->
-
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
@@ -116,14 +110,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  defineProps,
-  PropType,
-  defineEmits,
-  ref,
-  defineExpose,
-  watch
-} from 'vue'
+import { defineProps, PropType, defineEmits, ref, defineExpose } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { IFormItem } from '../types'
 const ruleFormRef = ref<FormInstance>()

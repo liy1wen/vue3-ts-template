@@ -2,8 +2,8 @@ import lRequest from '@/service'
 import { IRequest, IResponse } from './types'
 
 // 登录
-export const accountLogin = (params: IRequest) =>
-  lRequest.post<IResponse>({ url: '/login', params })
+export const accountLogin = (data: IRequest) =>
+  lRequest.post<IResponse>({ url: '/login', data })
 // 获取用户信息
 export const getUserInfo = (id: number) =>
   lRequest.get<IResponse>({ url: `/users/${id}`, showLoading: false })

@@ -25,7 +25,6 @@ import { tableConfig } from './config/tableConfig'
 import { modalConfig } from './config/modalConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
-import type { FormInstance } from 'element-plus'
 
 const modalTitle = ref('')
 // pageModal相关的hook逻辑

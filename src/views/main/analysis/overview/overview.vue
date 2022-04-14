@@ -23,7 +23,7 @@ import { technologyStacks } from './config/technologyStacks'
 .overview {
   background: #f0f2f5;
   .card-box {
-    margin-bottom: 20px;
+    margin-bottom: @spacing-base;
     .c-left {
       text-align: left;
     }

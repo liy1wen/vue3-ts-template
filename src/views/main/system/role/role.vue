@@ -82,7 +82,7 @@ const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
 <style scoped lang="less">
 .menu-tree {
   display: flex;
-  padding: 15px 20px 0;
+  padding: 15px @spacing-base 0;
   .menu-label {
     width: 80px;
     text-align: center;
