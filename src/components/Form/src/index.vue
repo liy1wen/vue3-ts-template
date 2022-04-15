@@ -110,55 +110,36 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType, defineEmits, ref, defineExpose } from 'vue'
+import { ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { IFormItem } from '../types'
 const ruleFormRef = ref<FormInstance>()
-const props = defineProps({
-  modelValue: {
-    type: Object,
-    require: true
-  },
-  formItems: {
-    type: Array as PropType<IFormItem[]>,
-    default: () => []
-  },
-  labelWidth: {
-    type: String,
-    default: '80px'
-  },
-  colLayout: {
-    type: Object,
-    default: () => ({
-      xl: 6,
-      lg: 8,
-      md: 12,
-      sm: 24,
-      xs: 24
-    })
-  },
-  formItemStyle: {
-    type: Object,
-    default: () => ({ padding: '20px 40px', marginBottom: 0 })
-  },
-  size: {
-    type: String,
-    default: 'default'
+type propsType = {
+  modelValue: Record<string, unknown>
+  formItems: IFormItem
+  labelWidth?: string
+  colLayout?: {
+    xl: number
+    lg: number
+    md: number
+    sm: number
+    xs: number
   }
-  // ruleName: {
-  //   type: Object
-  // }
+  formItemStyle?: { padding: string; marginBottom: number | string }
+  size?: string
+}
+const props = withDefaults(defineProps<propsType>(), {
+  labelWidth: '80px',
+  colLayout: () => ({
+    xl: 6,
+    lg: 8,
+    md: 12,
+    sm: 24,
+    xs: 24
+  }),
+  formItemStyle: () => ({ padding: '20px 40px', marginBottom: 0 }),
+  size: 'large'
 })
-
-// const ruleForm = ref({ name: '' })
-// const validateName = (rule: any, value: any, callback: any) => {
-//   if (value === '') {
-//     callback(new Error('Please input name'))
-//   } else {
-//     callback()
-//   }
-// }
-// const rule = ref([{ validator: validateName, trigger: 'blur' }])
 
 const emit = defineEmits(['update:modelValue'])
 

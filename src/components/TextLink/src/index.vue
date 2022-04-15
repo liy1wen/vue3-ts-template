@@ -8,13 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-defineProps({
-  textLinkArr: {
-    type: Array,
-    default: () => []
-  }
-})
+type propsType = {
+  textLinkArr: Array<any>
+}
+withDefaults(defineProps<propsType>(), {})
 </script>
 
 <style scoped lang="less">

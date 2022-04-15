@@ -21,28 +21,18 @@
 <script setup lang="ts">
 import Form from '../../Form'
 import { useStore } from 'vuex'
-import { ref, defineProps, defineExpose, watch } from 'vue'
-const props = defineProps({
-  modalConfig: {
-    type: Object,
-    require: true
-  },
-  editDefaultData: {
-    type: Object,
-    default: () => ({})
-  },
-  title: {
-    type: String,
-    default: ''
-  },
-  pageName: {
-    type: String,
-    default: ''
-  },
-  otherInfo: {
-    type: Object,
-    default: () => ({})
-  }
+import { ref, watch } from 'vue'
+import { IForm } from '@/components/Form/types'
+type propsType = {
+  modalConfig: IForm
+  editDefaultData: Record<string, unknown>
+  title?: string
+  pageName: string
+  otherInfo?: Record<string, unknown>
+}
+const props = withDefaults(defineProps<propsType>(), {
+  title: '',
+  otherInfo: () => ({})
 })
 const formRef = ref<InstanceType<typeof Form>>()
 const dialogVisible = ref(false)

@@ -19,16 +19,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref } from 'vue'
 import { Search, Refresh } from '@element-plus/icons-vue'
 import Form from '../../Form'
+import { IForm } from '@/components/Form/types'
 const emit = defineEmits(['clickSearch'])
-const props = defineProps({
-  formConfig: {
-    type: Object,
-    require: true
-  }
-})
+type propsType = {
+  formConfig: IForm
+}
+const props = withDefaults(defineProps<propsType>(), {})
 const formItems = props.formConfig?.formItems ?? []
 const originFormData: any = {}
 for (const item of formItems) {

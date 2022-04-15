@@ -42,7 +42,7 @@ const bCrumbs = computed(() => {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 @spacing-base;
   }
   .fold-menu {
     font-size: 30px;

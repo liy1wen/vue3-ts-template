@@ -9,14 +9,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType } from 'vue'
 import { IBreadCrumbs } from '../types'
-defineProps({
-  breadCrumbs: {
-    type: Array as PropType<IBreadCrumbs[]>,
-    default: () => []
-  }
-})
+type propsType = {
+  breadCrumbs: IBreadCrumbs[]
+}
+withDefaults(defineProps<propsType>(), {})
 </script>
 
 <style scoped></style>

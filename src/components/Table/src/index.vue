@@ -54,49 +54,32 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, PropType } from 'vue'
 import { IPropList } from '../types'
 const emit = defineEmits(['update:pageConfig', 'getData'])
-const props = defineProps({
-  dataList: {
-    type: Array,
-    default: () => []
-  },
-  dataCount: {
-    type: Number,
-    default: 0
-  },
-  pageConfig: {
-    type: Object,
-    default: () => ({ currentPage: 1, pageSize: 10 })
-  },
-  propList: {
-    type: Array as PropType<IPropList[]>,
-    default: () => []
-  },
-  headerStyle: {
-    type: Object,
-    default: () => ({
-      background: '#0C2135',
-      color: '#ffffff'
-    })
-  },
-  showIndexColumn: {
-    type: Boolean,
-    default: false
-  },
-  showSelectColumn: {
-    type: Boolean,
-    default: false
-  },
-  title: {
-    type: String,
-    default: ''
-  },
-  showPagination: {
-    type: Boolean,
-    default: true
+type propsType = {
+  dataList: Array<any>
+  dataCount: number
+  pageConfig?: {
+    currentPage: number
+    pageSize: number
   }
+  propList: IPropList[]
+  headerStyle?: {
+    background: string
+    color: string
+  }
+  showIndexColumn?: boolean
+  showSelectColumn?: boolean
+  title?: string
+  showPagination?: boolean
+}
+const props = withDefaults(defineProps<propsType>(), {
+  pageConfig: () => ({ currentPage: 1, pageSize: 10 }),
+  headerStyle: () => ({ background: '#0C2135', color: '#ffffff' }),
+  showIndexColumn: false,
+  showSelectColumn: false,
+  title: '',
+  showPagination: true
 })
 const handleSelectionChange = (value: any) => {
   console.log(value)
