@@ -8,6 +8,7 @@
       destroy-on-close
     >
       <Form v-bind="modalConfig" v-model="formData" ref="formRef" />
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>

@@ -55,6 +55,7 @@ import { useRoute } from 'vue-router'
 const store = useStore()
 const route = useRoute()
 const userMenus = computed(() => store.state.userModule.userMenu)
+console.log(userMenus)
 const collapse = computed(() => store.state.mainModule.isCollapse)
 const activeMenu = ref(route.path)
 </script>
