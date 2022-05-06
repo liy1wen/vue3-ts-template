@@ -10,7 +10,8 @@ const validateCellphone = (rule: any, value: any, callback: any) => {
   }
 }
 export const modalConfig: IForm = {
-  formItems: [{
+  formItems: [
+    {
       field: 'name',
       label: '用户名',
       placeholder: '请输入用户名',

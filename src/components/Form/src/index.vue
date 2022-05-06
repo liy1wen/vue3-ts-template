@@ -14,11 +14,9 @@
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
-              :label="item.label"
               :style="formItemStyle"
-              :rules="item.rule"
-              :prop="item.field"
               v-if="!item.isHidden"
+              v-bind="item"
             >
               <template v-if="item.type === 'input'">
                 <el-input
