@@ -12,14 +12,11 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    title: string
-  }>(),
-  {
-    title: ''
-  }
-)
+// import { defineProps } from 'vue'
+type propsType = {
+  title: string
+}
+defineProps<propsType>()
 </script>
 
 <style scoped lang="less">

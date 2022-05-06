@@ -6,10 +6,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-// import * as echarts from 'echarts'
 import BaseChart from '../base-echart.vue'
 import { dataList } from '../utils/data'
-// const props = defineProps({})
 
 const options = computed(() => ({
   grid: {

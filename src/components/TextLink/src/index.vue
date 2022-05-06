@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-type propsType = {
-  textLinkArr: Array<any>
+type props = {
+  textLinkArr: any[]
 }
-withDefaults(defineProps<propsType>(), {})
+defineProps<props>()
 </script>
 
 <style scoped lang="less">

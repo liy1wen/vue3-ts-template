@@ -3,7 +3,7 @@
     <router-link to="/" class="menu-link">
       <div class="logo">
         <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-        <span v-if="!collapse" class="title">IYiYi</span>
+        <span v-if="!collapse" class="title">Playdio OMS</span>
       </div>
     </router-link>
 
@@ -11,37 +11,43 @@
       :default-active="activeMenu"
       class="el-menu-vertical"
       :collapse="collapse"
-      background-color="#0c2135"
+      background-color="#464C5B"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
     >
-      <template v-for="item in userMenus" :key="item.id">
-        <!-- 二级菜单 -->
-        <template v-if="item.type === 1">
-          <!-- 二级菜单的可以展开的标题 -->
-          <el-sub-menu :index="item.url">
+      <template v-for="item in routes" :key="item.path">
+        <!-- 只有一个子路由 -->
+        <template v-if="item.children && item.children.length === 1">
+          <router-link :to="item.path" class="menu-link">
+            <el-menu-item :index="item.path">
+              <i :class="['iconfont', item.children[0].meta.icon]"></i>
+              <template #title>
+                <span class="menu-name">{{ item.children[0].name }}</span>
+              </template>
+            </el-menu-item>
+          </router-link>
+        </template>
+        <!-- 多个子路由 -->
+        <template v-else>
+          <el-sub-menu :index="item.path" v-if="!item.meta.hidden">
             <template #title>
-              <!-- <i v-if="item.icon" :class="item.icon"></i> -->
-              <el-icon><iphone /></el-icon>
-              <span>{{ item.name }}</span>
+              <i :class="['iconfont', item.meta.icon]"></i>
+              <span class="menu-name">{{ item.name }}</span>
             </template>
-            <!-- 遍历里面的item -->
-            <template v-for="subitem in item.children" :key="subitem.id">
-              <router-link :to="subitem.url" class="menu-link">
-                <el-menu-item :index="subitem.url">
-                  <i v-if="subitem.icon" :class="subitem.icon"></i>
-                  <span>{{ subitem.name }}</span>
+            <template v-for="subitem in item.children" :key="subitem.path">
+              <router-link
+                v-if="!subitem.meta.hidden"
+                :to="subitem.path"
+                class="menu-link"
+              >
+                <el-menu-item :index="subitem.path">
+                  <span class="el-menu-item-title">{{
+                    subitem.meta.title
+                  }}</span>
                 </el-menu-item>
               </router-link>
             </template>
           </el-sub-menu>
-        </template>
-        <!-- 一级菜单 -->
-        <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.url">
-            <i v-if="item.icon" :class="item.icon"></i>
-            <span>{{ item.name }}</span>
-          </el-menu-item>
         </template>
       </template>
     </el-menu>
@@ -49,26 +55,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
+// import { constantRoutes } from '@/router'
 const store = useStore()
 const route = useRoute()
-const userMenus = computed(() => store.state.userModule.userMenu)
-console.log(userMenus)
 const collapse = computed(() => store.state.mainModule.isCollapse)
-const activeMenu = ref(route.path)
+const routes = computed(() => store.state.routesModule.routes)
+console.log(routes.value, 'routes')
+const activeMenu = computed(() =>
+  route.path === '/dashboard' ? '/' : route.path
+)
 </script>
 
 <style scoped lang="less">
 .nav-menu {
   height: 100%;
-  background-color: #001529;
+  background-color: @sideBar-color;
 
   .logo {
     display: flex;
     height: 28px;
-    padding: 12px 10px 8px 10px;
+    padding: 15px 10px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -92,7 +101,7 @@ const activeMenu = ref(route.path)
     text-decoration: none;
   }
   :deep(.el-sub-menu__title) {
-    background-color: #001529 !important;
+    background-color: @sideBar-color;
   }
   // hover 高亮
   .el-menu-item:hover {
@@ -100,13 +109,19 @@ const activeMenu = ref(route.path)
   }
 
   .is-active {
-    color: #fff !important;
-    background-color: #0a60bd !important;
+    color: @primary-color !important;
+    background-color: #383d49 !important;
   }
 }
 
 .el-menu-vertical:not(.el-menu--collapse) {
   width: 100%;
   height: calc(100% - 48px);
+}
+.menu-name {
+  margin-left: 12px;
+}
+.el-menu-item-title {
+  margin-left: 8px;
 }
 </style>

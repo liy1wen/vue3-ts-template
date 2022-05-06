@@ -17,7 +17,6 @@ import { useStore } from 'vuex'
 import UserOperation from './user-operation.vue'
 import BreadCrumbs from './bread-crumbs.vue'
 import { useRoute } from 'vue-router'
-import { generateBreadCrumbs } from '@/utils/generateBreadCrumbs'
 const store = useStore()
 const route = useRoute()
 const isFold = ref(false)
@@ -25,14 +24,16 @@ const handleFoldClick = () => {
   isFold.value = !isFold.value
   store.commit('mainModule/SET_ISCOLLAPSE', isFold.value)
 }
-
 const bCrumbs = computed(() => {
-  return generateBreadCrumbs(store.state.userModule.userMenu, route.path)
+  return route.matched.filter((item) => item.name)
 })
 </script>
 
 <style scoped lang="less">
 .nav-header {
+  background: @primary-color;
+  color: #fff;
+  padding: 0 @spacing-base;
   width: 100%;
   height: 100%;
   display: flex;

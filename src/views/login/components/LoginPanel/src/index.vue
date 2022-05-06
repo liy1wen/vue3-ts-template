@@ -37,7 +37,7 @@ import { UserFilled, Lock } from '@element-plus/icons-vue'
 import { accountRules } from '../../../Validation'
 import utils from '@/utils/cache'
 import { useStore } from 'vuex'
-
+import AES from '@/utils/AES'
 const store = useStore()
 const ruleFormRef = ref<FormInstance>()
 const accountForm = reactive({
@@ -47,6 +47,8 @@ const accountForm = reactive({
 const login = () => {
   ruleFormRef.value?.validate((valid: boolean) => {
     if (valid) {
+      const pass = AES.encrypt(JSON.stringify(accountForm.password))
+      console.log(AES.decrypt(pass))
       store.dispatch('userModule/login', { ...accountForm })
     } else {
       console.log('error submit!')

@@ -5,14 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { defineProps, computed } from 'vue'
 import BaseChart from '../base-echart.vue'
 type propsType = {
-  data: Array<any>
+  data: any[]
 }
-const props = withDefaults(defineProps<propsType>(), {
-  data: () => []
-})
+const props = withDefaults(defineProps<propsType>(), {})
+
 const options = computed(() => ({
   title: {
     // text: 'Referer of a Website',

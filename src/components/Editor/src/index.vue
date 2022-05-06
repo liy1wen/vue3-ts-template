@@ -19,10 +19,7 @@ import type Editor from 'wangeditor'
 import hljs from 'highlight.js'
 import { useStore } from 'vuex'
 const store = useStore()
-// export interface EditorInfo {
-//   html: string
-//   text: string
-// }
+
 const storyInfo = ref({
   title: '',
   content: ''

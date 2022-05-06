@@ -5,14 +5,14 @@
       :title="title"
       width="30%"
       center
+      draggable
       destroy-on-close
     >
       <Form v-bind="modalConfig" v-model="formData" ref="formRef" />
-      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="submit">确定</el-button>
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+          <el-button class="primary-btn" @click="submit">Done</el-button>
         </span>
       </template>
     </el-dialog>
@@ -23,18 +23,15 @@
 import Form from '../../Form'
 import { useStore } from 'vuex'
 import { ref, watch } from 'vue'
-import { IForm } from '@/components/Form/types'
 type propsType = {
-  modalConfig: IForm
-  editDefaultData: Record<string, unknown>
+  modalConfig: Record<string, any>
+  editDefaultData: Record<string, any>
   title?: string
-  pageName: string
-  otherInfo?: Record<string, unknown>
+  pageName?: string
+  otherInfo?: Record<string, any>
 }
-const props = withDefaults(defineProps<propsType>(), {
-  title: '',
-  otherInfo: () => ({})
-})
+const props = withDefaults(defineProps<propsType>(), {})
+
 const formRef = ref<InstanceType<typeof Form>>()
 const dialogVisible = ref(false)
 const formData = ref<any>({})

@@ -9,3 +9,5 @@ declare module '*.vue' {
 }
 declare module '*.js'
 declare module '*.json'
+declare module 'crypto-js'
+declare module 'nprogress'

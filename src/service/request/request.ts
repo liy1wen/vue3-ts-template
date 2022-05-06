@@ -43,9 +43,7 @@ class LRequest {
         if (this.showLoading) {
           if (count === 0) {
             loadingInstance = ElLoading.service({
-              lock: true,
-              text: '正在请求数据....',
-              background: 'rgba(0, 0, 0, 0.5)'
+              fullscreen: true
             })
           }
           count++

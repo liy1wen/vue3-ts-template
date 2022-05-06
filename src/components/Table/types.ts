@@ -3,6 +3,7 @@ export interface IPropList {
   label: string
   width?: string
   slotName?: string
+  sortable?: boolean
 }
 
 export interface ITable {
@@ -12,4 +13,5 @@ export interface ITable {
   title?: string
   requestUrl: string
   showPagination?: boolean
+  showExportBtn?: boolean
 }

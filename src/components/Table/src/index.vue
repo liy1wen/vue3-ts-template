@@ -5,6 +5,7 @@
       <slot name="handerHeader"></slot>
     </div>
     <el-table
+      table-layout="fixed"
       size="large"
       :data="dataList"
       stripe
@@ -54,20 +55,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { IPropList } from '../types'
 const emit = defineEmits(['update:pageConfig', 'getData'])
 type propsType = {
-  dataList: Array<any>
-  dataCount: number
-  pageConfig?: {
-    currentPage: number
-    pageSize: number
-  }
+  dataList: any[]
+  dataCount?: number
+  pageConfig?: Record<string, unknown>
   propList: IPropList[]
-  headerStyle?: {
-    background: string
-    color: string
-  }
+  headerStyle?: Record<string, unknown>
   showIndexColumn?: boolean
   showSelectColumn?: boolean
   title?: string
@@ -75,14 +71,18 @@ type propsType = {
 }
 const props = withDefaults(defineProps<propsType>(), {
   pageConfig: () => ({ currentPage: 1, pageSize: 10 }),
-  headerStyle: () => ({ background: '#0C2135', color: '#ffffff' }),
+  headerStyle: () => ({
+    background: '#0C2135',
+    color: '#ffffff'
+  }),
   showIndexColumn: false,
   showSelectColumn: false,
-  title: '',
   showPagination: true
 })
+
+const selectList = ref<any[]>([])
 const handleSelectionChange = (value: any) => {
-  console.log(value)
+  selectList.value = value
 }
 const handleSizeChange = (pageSize: number) => {
   emit('update:pageConfig', { ...props.pageConfig, pageSize })
@@ -93,6 +93,9 @@ const handleCurrentChange = (currentPage: number) => {
   emit('update:pageConfig', { ...props.pageConfig, currentPage })
   emit('getData')
 }
+defineExpose({
+  selectList
+})
 </script>
 
 <style scoped lang="less">
@@ -103,7 +106,7 @@ const handleCurrentChange = (currentPage: number) => {
   justify-content: space-between;
   padding: 0px 0px @spacing-base;
   .header-title {
-    font-size: 20px;
+    font-size: @spacing-base;
     font-weight: bold;
   }
 }

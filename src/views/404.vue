@@ -182,7 +182,7 @@ const message = ref('The webmaster said that you can not enter this page...')
       animation-fill-mode: forwards;
     }
     &__headline {
-      font-size: 20px;
+      font-size: @spacing-base;
       line-height: 24px;
       color: #222;
       font-weight: bold;

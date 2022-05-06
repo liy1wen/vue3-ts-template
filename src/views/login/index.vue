@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-panel">
-      <div class="title animate__animated animate__backInDown">IYiYi</div>
+      <div class="title animate__animated animate__backInDown">Playdio</div>
       <div class="sub-title">Operation Management System</div>
       <login-panel />
     </div>
@@ -20,8 +20,6 @@ import LoginPanel from './components/LoginPanel'
   background: @bg-color;
   justify-content: center;
   align-items: center;
-  // background: url('../../assets/img/login.png') left no-repeat;
-  // background-position: left;
   .login-panel {
     text-align: center;
     padding: 40px 60px;
@@ -67,15 +65,6 @@ import LoginPanel from './components/LoginPanel'
         margin-bottom: 10px;
       }
       .el-form :deep(.el-form-item__label) {
-        font-weight: bold;
-      }
-    }
-    .password-operation {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .remember-password :deep .forgotPassword {
         font-weight: bold;
       }
     }
