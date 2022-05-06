@@ -11,22 +11,16 @@
 <script setup lang="ts">
 // import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
-import { ref, onMounted, defineProps, PropType, watchEffect } from 'vue'
+import { ref, onMounted, watchEffect } from 'vue'
 import { useEchart } from '@/hooks/use-echart'
-const props = defineProps({
-  options: {
-    type: Object as PropType<EChartsOption>,
-    require: true,
-    default: () => ({})
-  },
-  width: {
-    type: String,
-    default: '100%'
-  },
-  height: {
-    type: String,
-    default: '350px'
-  }
+type propsType = {
+  options: EChartsOption
+  width?: string
+  height?: string
+}
+const props = withDefaults(defineProps<propsType>(), {
+  width: '100%',
+  height: '350px'
 })
 
 const chartRef = ref<HTMLElement>()

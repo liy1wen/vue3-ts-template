@@ -68,17 +68,16 @@
 
 <script setup lang="ts">
 import Table from '../../Table'
-import { defineProps, computed, defineExpose, ref, defineEmits } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Delete, CirclePlus, Edit } from '@element-plus/icons-vue'
 import { useBtnPermissions } from '@/hooks/use-btn-permissions'
-const props = defineProps({
-  tableConfig: {
-    type: Object,
-    require: true
-  }
-})
+import { ITable } from '@/components/Table/types'
+type propsType = {
+  tableConfig: ITable
+}
+const props = withDefaults(defineProps<propsType>(), {})
 const emit = defineEmits(['addNew', 'edit'])
 const pageInfo = ref({
   pageSize: 10,

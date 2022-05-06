@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import BaseChart from '../base-echart.vue'
-const props = defineProps({
-  data: {
-    type: Array,
-    require: true
-  }
+type propsType = {
+  data: Array<any>
+}
+const props = withDefaults(defineProps<propsType>(), {
+  data: () => []
 })
 const options = computed(() => ({
   title: {

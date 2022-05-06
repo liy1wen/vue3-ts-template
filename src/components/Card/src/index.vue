@@ -12,13 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-defineProps({
-  title: {
-    type: String,
-    require: true
+withDefaults(
+  defineProps<{
+    title: string
+  }>(),
+  {
+    title: ''
   }
-})
+)
 </script>
 
 <style scoped lang="less">

@@ -5,18 +5,16 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import * as echarts from 'echarts'
 import BaseChart from '../base-echart.vue'
-const props = defineProps({
-  labels: {
-    type: Array,
-    require: true
-  },
-  values: {
-    type: Array,
-    require: true
-  }
+type propsType = {
+  labels: Array<any>
+  values: Array<any>
+}
+const props = withDefaults(defineProps<propsType>(), {
+  labels: () => [],
+  values: () => []
 })
 
 const options = computed(() => ({

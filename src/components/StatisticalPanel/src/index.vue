@@ -26,16 +26,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps } from 'vue'
+import { ref, onMounted } from 'vue'
 import { CountUp } from 'countup.js'
 // import type { CountUpOptions } from 'countup.js'
 
-const props = defineProps({
+type propsType = {
   panelData: {
-    type: Object,
-    require: true
+    color: string
+    count: number
+    icon: string
+    title: string
   }
-})
+}
+const props = withDefaults(defineProps<propsType>(), {})
 const countRef = ref<HTMLElement | null>(null)
 onMounted(() => {
   const countUp = new CountUp(
