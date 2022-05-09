@@ -9,7 +9,7 @@ import 'highlight.js/styles/monokai-sublime.css'
 import './assets/css/index.less'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
+import '@/router/permission'
 import { globalRegister } from './global/index'
 
 // 防止刷新页面路由消失

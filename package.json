@@ -21,6 +21,7 @@
     "element-plus": "^2.1.2",
     "highlight.js": "^11.5.0",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0",

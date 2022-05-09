@@ -55,11 +55,11 @@ export const userModule: Module<IUserState, IRootState> = {
       const userInfo = await getUserInfo(data.id)
       commit('SET_USERINFO', userInfo.data)
       localCache.setCache('userInfo', userInfo.data)
-      // 获取菜单
-      const userMenu = await getUserMenu(userInfo.data.role.id)
-      commit('SET_USERMENU', userMenu.data)
-      localCache.setCache('userMenu', userMenu.data)
-      router.replace('/main/analysis/dashboard')
+      // // 获取菜单
+      // const userMenu = await getUserMenu(userInfo.data.role.id)
+      // commit('SET_USERMENU', userMenu.data)
+      // localCache.setCache('userMenu', userMenu.data)
+      router.replace('/')
     },
     loginOut() {
       const name = localCache.getCache('name')
