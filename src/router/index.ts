@@ -15,7 +15,8 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/analysis/dashboard',
+    redirect: '/analysis/overview',
+    name: '系统总览',
     meta: {
       hidden: false,
       icon: 'icon-home'
@@ -25,13 +26,13 @@ export const constantRoutes: RouteRecordRaw[] = [
         path: '/analysis/dashboard',
         name: 'Dashboard',
         component: () => import('@/views/analysis/dashboard/dashboard.vue'),
-        meta: { title: 'dashboard', hidden: false }
+        meta: { title: '商品统计', hidden: false }
       },
       {
         path: '/analysis/overview',
         name: 'Overview',
         component: () => import('@/views/analysis/overview/overview.vue'),
-        meta: { title: 'overview', hidden: false }
+        meta: { title: '核心技术', hidden: false }
       }
     ]
   },
@@ -39,22 +40,23 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/product',
     component: Layout,
     redirect: '/product/category',
+    name: '商品中心',
     meta: {
       hidden: false,
-      icon: 'icon-home'
+      icon: 'icon-tuijian'
     },
     children: [
       {
         path: '/product/category',
         name: 'Category',
         component: () => import('@/views/product/category/category.vue'),
-        meta: { title: 'category', hidden: false }
+        meta: { title: '商品类别', hidden: false }
       },
       {
         path: '/product/goods',
         name: 'Goods',
         component: () => import('@/views/product/goods/goods.vue'),
-        meta: { title: 'goods', hidden: false }
+        meta: { title: '商品信息', hidden: false }
       }
     ]
   },
@@ -62,34 +64,35 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/system',
     component: Layout,
     redirect: '/system/department',
+    name: '系统管理',
     meta: {
       hidden: false,
-      icon: 'icon-home'
+      icon: 'icon-shezhi'
     },
     children: [
       {
         path: '/system/department',
         name: 'Department',
         component: () => import('@/views/system/department/department.vue'),
-        meta: { title: 'department', hidden: false }
+        meta: { title: '部门管理', hidden: false }
       },
       {
         path: '/system/menu',
         name: 'Menu',
         component: () => import('@/views/system/menu/menu.vue'),
-        meta: { title: 'menu', hidden: false }
+        meta: { title: '菜单管理', hidden: false }
       },
       {
         path: '/system/role',
         name: 'Role',
         component: () => import('@/views/system/role/role.vue'),
-        meta: { title: 'role', hidden: false }
+        meta: { title: '角色管理', hidden: false }
       },
       {
         path: '/system/user',
         name: 'Role',
         component: () => import('@/views/system/user/user.vue'),
-        meta: { title: 'user', hidden: false }
+        meta: { title: '用户管理', hidden: false }
       }
     ]
   },
@@ -97,22 +100,23 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/story',
     component: Layout,
     redirect: '/story/chat',
+    name: '随便聊聊',
     meta: {
       hidden: false,
-      icon: 'icon-home'
+      icon: 'icon-xiaoxi'
     },
     children: [
       {
         path: '/story/chat',
         name: 'Story',
         component: () => import('@/views/story/chat/chat.vue'),
-        meta: { title: 'chat', hidden: false }
+        meta: { title: '你的故事', hidden: false }
       },
       {
         path: '/story/list',
         name: 'List',
         component: () => import('@/views/story/list/list.vue'),
-        meta: { title: 'list', hidden: false }
+        meta: { title: '故事列表', hidden: false }
       }
     ]
   },

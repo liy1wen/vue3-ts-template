@@ -11,7 +11,7 @@
       :default-active="activeMenu"
       class="el-menu-vertical"
       :collapse="collapse"
-      background-color="#464C5B"
+      background-color="#0c2135"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
     >
