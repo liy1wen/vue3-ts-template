@@ -15,11 +15,12 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/analysis/overview',
-    name: '系统总览',
+    redirect: '/analysis/dashboard',
+    name: 'Analysis',
     meta: {
       hidden: false,
-      icon: 'icon-home'
+      icon: 'icon-home',
+      title: '系统总览'
     },
     children: [
       {
@@ -40,10 +41,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/product',
     component: Layout,
     redirect: '/product/category',
-    name: '商品中心',
+    name: 'Product',
     meta: {
       hidden: false,
-      icon: 'icon-tuijian'
+      icon: 'icon-tuijian',
+      title: '商品中心'
     },
     children: [
       {
@@ -64,10 +66,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/system',
     component: Layout,
     redirect: '/system/department',
-    name: '系统管理',
+    name: 'System',
     meta: {
       hidden: false,
-      icon: 'icon-shezhi'
+      icon: 'icon-shezhi',
+      title: '系统管理'
     },
     children: [
       {
@@ -90,7 +93,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: '/system/user',
-        name: 'Role',
+        name: 'User',
         component: () => import('@/views/system/user/user.vue'),
         meta: { title: '用户管理', hidden: false }
       }
@@ -100,10 +103,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/story',
     component: Layout,
     redirect: '/story/chat',
-    name: '随便聊聊',
+    name: 'Story',
     meta: {
       hidden: false,
-      icon: 'icon-xiaoxi'
+      icon: 'icon-xiaoxi',
+      title: '随便聊聊'
     },
     children: [
       {

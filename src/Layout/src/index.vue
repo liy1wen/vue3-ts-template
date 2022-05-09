@@ -78,7 +78,7 @@ const isCollapse = computed(() => store.state.mainModule.isCollapse)
   line-height: 200px;
   text-align: left;
   cursor: pointer;
-  background-color: red;
+  background-color: @sideBar-color;
   transition: width 0.3s linear;
   scrollbar-width: none; /* firefox */
   -ms-overflow-style: none; /* IE 10+ */

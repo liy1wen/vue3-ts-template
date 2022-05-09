@@ -3,7 +3,7 @@
     <el-breadcrumb separator="/">
       <template v-for="item in breadCrumbs" :key="item.path">
         <el-breadcrumb-item :to="{ path: item.path }">{{
-          item.name
+          item.meta.title
         }}</el-breadcrumb-item>
       </template>
     </el-breadcrumb>
@@ -15,16 +15,17 @@ import { IBreadCrumbs } from '../types'
 type propsType = {
   breadCrumbs: IBreadCrumbs[]
 }
+
 defineProps<propsType>()
 </script>
 
 <style scoped lang="less">
 .breadcrumb-container {
   :deep(.is-link) {
-    color: #ffffff !important;
+    // color: #ffffff !important;
   }
   :deep(.el-breadcrumb__separator) {
-    color: #ffffff;
+    // color: #ffffff;
   }
 }
 </style>

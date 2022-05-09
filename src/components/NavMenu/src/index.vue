@@ -101,7 +101,7 @@ const activeMenu = computed(() =>
     text-decoration: none;
   }
   :deep(.el-sub-menu__title) {
-    background-color: @sideBar-color;
+    background-color: @sideBar-color !important;
   }
   // hover 高亮
   .el-menu-item:hover {
@@ -109,7 +109,8 @@ const activeMenu = computed(() =>
   }
 
   .is-active {
-    color: @primary-color !important;
+    // color: @primary-color !important;
+    color: #fff;
     background-color: #383d49 !important;
   }
 }

@@ -31,8 +31,6 @@ const bCrumbs = computed(() => {
 
 <style scoped lang="less">
 .nav-header {
-  background: @primary-color;
-  color: #fff;
   padding: 0 @spacing-base;
   width: 100%;
   height: 100%;
