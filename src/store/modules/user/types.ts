@@ -3,4 +3,5 @@ export interface IUserState {
   token: string
   userMenu: any[]
   btnPermissions: any[]
+  roles: string[]
 }

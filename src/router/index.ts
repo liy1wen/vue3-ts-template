@@ -63,43 +63,6 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/department',
-    name: 'System',
-    meta: {
-      hidden: false,
-      icon: 'icon-shezhi',
-      title: '系统管理'
-    },
-    children: [
-      {
-        path: '/system/department',
-        name: 'Department',
-        component: () => import('@/views/system/department/department.vue'),
-        meta: { title: '部门管理', hidden: false }
-      },
-      {
-        path: '/system/menu',
-        name: 'Menu',
-        component: () => import('@/views/system/menu/menu.vue'),
-        meta: { title: '菜单管理', hidden: false }
-      },
-      {
-        path: '/system/role',
-        name: 'Role',
-        component: () => import('@/views/system/role/role.vue'),
-        meta: { title: '角色管理', hidden: false }
-      },
-      {
-        path: '/system/user',
-        name: 'User',
-        component: () => import('@/views/system/user/user.vue'),
-        meta: { title: '用户管理', hidden: false }
-      }
-    ]
-  },
-  {
     path: '/story',
     component: Layout,
     redirect: '/story/chat',
@@ -146,7 +109,45 @@ export const constantRoutes: RouteRecordRaw[] = [
  * 用来放置有权限（roles 属性）的路由
  * 必须带有 name 属性
  */
-export const asyncRoutes: RouteRecordRaw[] = []
+export const asyncRoutes: RouteRecordRaw[] = [
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/department',
+    name: 'System',
+    meta: {
+      hidden: false,
+      icon: 'icon-shezhi',
+      title: '系统管理'
+    },
+    children: [
+      {
+        path: '/system/department',
+        name: 'Department',
+        component: () => import('@/views/system/department/department.vue'),
+        meta: { title: '部门管理', hidden: false, roles: ['admin'] }
+      },
+      {
+        path: '/system/menu',
+        name: 'Menu',
+        component: () => import('@/views/system/menu/menu.vue'),
+        meta: { title: '菜单管理', hidden: false, roles: ['admin'] }
+      },
+      {
+        path: '/system/role',
+        name: 'Role',
+        component: () => import('@/views/system/role/role.vue'),
+        meta: { title: '角色管理', hidden: false, roles: ['editor'] }
+      },
+      {
+        path: '/system/user',
+        name: 'User',
+        component: () => import('@/views/system/user/user.vue'),
+        meta: { title: '用户管理', hidden: false, roles: ['editor'] }
+      }
+    ]
+  }
+]
 const router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoutes

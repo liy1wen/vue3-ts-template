@@ -32,7 +32,7 @@
           <el-sub-menu :index="item.path" v-if="!item.meta.hidden">
             <template #title>
               <i :class="['iconfont', item.meta.icon]"></i>
-              <span class="menu-name">{{ item.name }}</span>
+              <span class="menu-name">{{ item.meta.title }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.path">
               <router-link

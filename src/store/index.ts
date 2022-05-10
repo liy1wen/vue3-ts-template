@@ -8,9 +8,7 @@ import { storyModule } from './modules/story/story'
 import { routesModule } from './modules/permission'
 export default createStore<IRootState>({
   state: {
-    username: '',
-    departmentList: [],
-    roleList: []
+    username: ''
   },
   mutations: {},
   actions: {},

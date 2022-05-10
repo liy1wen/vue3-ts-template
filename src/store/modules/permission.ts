@@ -3,6 +3,11 @@ import { RouteRecordRaw } from 'vue-router'
 import { constantRoutes, asyncRoutes } from '@/router'
 import { IRootState } from '../types'
 import router from '@/router'
+/**
+ * 判断用户是否有权限访问单个路由
+ * roles：用户角色
+ * route：访问的路由
+ */
 const hasPermission = (roles: string[], route: any) => {
   if (route.meta && route.meta.roles) {
     return roles.some((role) => {
@@ -16,7 +21,11 @@ const hasPermission = (roles: string[], route: any) => {
     return true
   }
 }
-
+/**
+ * 筛选可访问的动态路由
+ * roles：用户角色
+ * route：访问的动态列表
+ */
 const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   const res: RouteRecordRaw[] = []
   routes.forEach((route) => {
@@ -51,10 +60,13 @@ export const routesModule: Module<IPermissionState, IRootState> = {
   },
   actions: {
     generateRoutes({ commit }, { roles }) {
+      // accessedRoutes: 筛选出的动态路由
       const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
       console.log(accessedRoutes, 'accessedRoutes')
+      // 将accessedRoutes和默认路由constantRoutes拼接得到完整可访问路由
       commit('SET_ROUTES', constantRoutes.concat(accessedRoutes))
       commit('SET_DYNAMICROUTES', accessedRoutes)
+      // 通过addRoute将路由挂载到router上
       accessedRoutes.forEach((route) => {
         router.addRoute(route)
       })

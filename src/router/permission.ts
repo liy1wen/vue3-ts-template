@@ -4,7 +4,6 @@ import localCache from '@/utils/cache'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import store from '@/store'
-// import { RouteRecordRaw } from 'vue-router'
 
 NProgress.configure({ showSpinner: false })
 const whiteList = ['/login']
@@ -24,12 +23,8 @@ router.beforeEach(
         next({ path: '/' })
         NProgress.done()
       } else {
-        const roles = ['editor']
+        const roles = store.state.userModule.roles
         store.dispatch('routesModule/generateRoutes', { roles })
-        // const dynamicRoutes = store.state.routesModule.dynamicRoutes
-        // dynamicRoutes.forEach((route: any) => {
-        //   router.addRoute(route)
-        // })
         // 确保添加路由已完成
         // 设置 replace: true, 因此导航将不会留下历史记录
         // next({ ...to, replace: true })

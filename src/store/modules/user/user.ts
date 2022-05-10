@@ -20,7 +20,8 @@ export const userModule: Module<IUserState, IRootState> = {
     userInfo: localCache.getCache('userInfo') ?? '',
     token: localCache.getCache('token') ?? '',
     userMenu: localCache.getCache('userMenu') ?? [],
-    btnPermissions: localCache.getCache('btnPermissions') ?? []
+    btnPermissions: localCache.getCache('btnPermissions') ?? [],
+    roles: ['editor']
   },
   getters: {},
   mutations: {

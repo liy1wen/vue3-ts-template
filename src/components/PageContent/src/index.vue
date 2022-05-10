@@ -10,14 +10,8 @@
       <!-- 常规插槽 -->
       <template #handerHeader>
         <div>
-          <el-button type="primary" :icon="Delete" v-if="showDeleteBtn"
-            >删除</el-button
-          >
-          <el-button
-            type="primary"
-            :icon="CirclePlus"
-            v-if="showCreateBtn"
-            @click="handerAddNew"
+          <el-button type="primary" :icon="Delete">删除</el-button>
+          <el-button type="primary" :icon="CirclePlus" @click="handerAddNew"
             >新增</el-button
           >
         </div>
@@ -42,7 +36,6 @@
           :icon="Edit"
           type="primary"
           @click="handleEdit(scope.row)"
-          v-if="showUpdateBtn"
           >编辑</el-button
         >
         <el-button
@@ -50,7 +43,6 @@
           type="danger"
           :icon="Delete"
           @click="handleDelete(scope.row)"
-          v-if="showDeleteBtn"
           >删除</el-button
         >
       </template>

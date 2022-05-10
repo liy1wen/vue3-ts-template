@@ -13,6 +13,8 @@ import '@/router/permission'
 import { globalRegister } from './global/index'
 
 // 防止刷新页面路由消失
+const roles = ['editor']
+store.dispatch('routesModule/generateRoutes', { roles })
 
 const app = createApp(App)
 globalRegister(app)
