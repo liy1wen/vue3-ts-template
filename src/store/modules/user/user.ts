@@ -71,7 +71,7 @@ export const userModule: Module<IUserState, IRootState> = {
         localCache.setCache('name', name)
         localCache.setCache('password', password)
       }
-      router.replace({ path: '/login' })
+      router.replace({ path: '/' })
       // location.reload()
     }
   }

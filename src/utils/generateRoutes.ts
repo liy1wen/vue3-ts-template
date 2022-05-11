@@ -7,8 +7,9 @@ export function generateRoutes(userMenus: any[]): RouteRecordRaw[] {
   const allRoutes: RouteRecordRaw[] = []
   const routeFiles = require.context('../router/main', true, /\.ts/)
   routeFiles.keys().forEach((key) => {
-    const route = require('../router/main' + key.split('.')[1])
-    allRoutes.push(route.default)
+    const route = require('../router/main' + key.split('.')[1]).default
+    console.log(route)
+    allRoutes.push(route)
   })
 
   // 2.根据菜单获取需要添加的routes
