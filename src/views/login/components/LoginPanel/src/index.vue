@@ -41,8 +41,8 @@ import { useStore } from 'vuex'
 const store = useStore()
 const ruleFormRef = ref<FormInstance>()
 const accountForm = reactive({
-  name: utils.getCache('name') ?? '',
-  password: utils.getCache('password') ?? ''
+  name: utils.getCache('name') ?? 'kobe',
+  password: utils.getCache('password') ?? '123456'
 })
 const login = () => {
   ruleFormRef.value?.validate((valid: boolean) => {
