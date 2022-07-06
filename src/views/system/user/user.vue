@@ -1,19 +1,8 @@
 <template>
   <div>
     <page-search :formConfig="formConfig" @clickSearch="handerSearch" />
-    <page-content
-      :tableConfig="tableConfig"
-      ref="pageContentRef"
-      @edit="handleEdit"
-      @addNew="handleAdd"
-    />
-    <page-modal
-      ref="pageModalRef"
-      :modalConfig="modalConfigRef"
-      :editDefaultData="editDefaultData"
-      :title="modalTitle"
-      pageName="users"
-    ></page-modal>
+    <page-content :tableConfig="tableConfig" ref="pageContentRef" @edit="handleEdit" @addNew="handleAdd" />
+    <page-modal ref="pageModalRef" :modalConfig="modalConfigRef" :editDefaultData="editDefaultData" :title="modalTitle" pageName="users"></page-modal>
   </div>
 </template>
 
@@ -66,9 +55,7 @@ store.dispatch('systemModule/getDataList', {
 const modalConfigRef = computed(() => {
   const departmentList = store.state.systemModule.departmentList
   const roleList = store.state.systemModule.roleList
-  const departmentItem = modalConfig.formItems.find(
-    (item) => item.field === 'departmentId'
-  )
+  const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
   if (departmentItem) {
     departmentItem.options = departmentList.map((item: any) => {
       return { value: item.id, label: item.name }
@@ -85,9 +72,6 @@ const modalConfigRef = computed(() => {
 })
 
 const [pageContentRef, handerSearch] = usePageSearch()
-const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
-  editCb,
-  addCb
-)
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(editCb, addCb)
 </script>
 <style scoped></style>

@@ -2,12 +2,7 @@ import { Module } from 'vuex'
 import { ElMessage } from 'element-plus'
 import { ISystemState } from './types'
 import { IRootState } from '../../types'
-import {
-  getDataList,
-  deleteData,
-  createData,
-  updateData
-} from '@/api/system/index'
+import { getDataList, deleteData, createData, updateData } from '@/api/system/index'
 
 export const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,

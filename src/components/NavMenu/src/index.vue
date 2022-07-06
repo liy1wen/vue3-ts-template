@@ -35,15 +35,9 @@
               <span class="menu-name">{{ item.meta.title }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.path">
-              <router-link
-                v-if="!subitem.meta.hidden"
-                :to="subitem.path"
-                class="menu-link"
-              >
+              <router-link v-if="!subitem.meta.hidden" :to="subitem.path" class="menu-link">
                 <el-menu-item :index="subitem.path">
-                  <span class="el-menu-item-title">{{
-                    subitem.meta.title
-                  }}</span>
+                  <span class="el-menu-item-title">{{ subitem.meta.title }}</span>
                 </el-menu-item>
               </router-link>
             </template>
@@ -64,9 +58,7 @@ const route = useRoute()
 const collapse = computed(() => store.state.mainModule.isCollapse)
 const routes = computed(() => store.state.routesModule.routes)
 console.log(routes.value, 'routes')
-const activeMenu = computed(() =>
-  route.path === '/dashboard' ? '/' : route.path
-)
+const activeMenu = computed(() => (route.path === '/dashboard' ? '/' : route.path))
 </script>
 
 <style scoped lang="less">

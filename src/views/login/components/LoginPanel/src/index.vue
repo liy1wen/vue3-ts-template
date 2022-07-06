@@ -1,31 +1,13 @@
 <template>
-  <el-form
-    ref="ruleFormRef"
-    :model="accountForm"
-    :rules="accountRules"
-    label-width="70px"
-    class="login-ruleForm"
-    size="large"
-  >
+  <el-form ref="ruleFormRef" :model="accountForm" :rules="accountRules" label-width="70px" class="login-ruleForm" size="large">
     <el-form-item prop="name">
-      <el-input
-        v-model="accountForm.name"
-        clearable
-        :prefix-icon="UserFilled"
-      />
+      <el-input v-model="accountForm.name" clearable :prefix-icon="UserFilled" />
     </el-form-item>
     <el-form-item prop="password">
-      <el-input
-        show-password
-        type="password"
-        v-model="accountForm.password"
-        :prefix-icon="Lock"
-      />
+      <el-input show-password type="password" v-model="accountForm.password" :prefix-icon="Lock" />
     </el-form-item>
     <el-form-item>
-      <el-button class="login-button primary-btn" size="large" @click="login"
-        >Login</el-button
-      >
+      <el-button class="login-button primary-btn" size="large" @click="login">Login</el-button>
     </el-form-item>
   </el-form>
 </template>

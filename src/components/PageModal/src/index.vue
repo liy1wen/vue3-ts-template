@@ -1,12 +1,6 @@
 <template>
   <div>
-    <el-dialog
-      v-model="dialogVisible"
-      :title="title"
-      width="30%"
-      center
-      destroy-on-close
-    >
+    <el-dialog v-model="dialogVisible" :title="title" width="30%" center destroy-on-close>
       <Form v-bind="modalConfig" v-model="formData" ref="formRef" />
       <slot></slot>
       <template #footer>

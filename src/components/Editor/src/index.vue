@@ -6,9 +6,7 @@
     </div>
     <div id="editor" ref="editorRef"></div>
     <div class="syncContent" :innerHTML="content.html"></div>
-    <el-button type="primary" class="submit-btn" @click="submit"
-      >提交</el-button
-    >
+    <el-button type="primary" class="submit-btn" @click="submit">提交</el-button>
   </div>
 </template>
 

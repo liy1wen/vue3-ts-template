@@ -3,21 +3,11 @@
     <div class="header">
       <slot name="header"></slot>
     </div>
-    <el-form
-      :label-width="labelWidth"
-      class="form-content"
-      :size="size"
-      ref="ruleFormRef"
-      :model="modelValue"
-    >
+    <el-form :label-width="labelWidth" class="form-content" :size="size" ref="ruleFormRef" :model="modelValue">
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
-            <el-form-item
-              :style="formItemStyle"
-              v-if="!item.isHidden"
-              v-bind="item"
-            >
+            <el-form-item :style="formItemStyle" v-if="!item.isHidden" v-bind="item">
               <template v-if="item.type === 'input'">
                 <el-input
                   :placeholder="item.placeholder"
@@ -49,52 +39,25 @@
                   :model-value="modelValue[`${item.field}`]"
                   @update:modelValue="handleValueChange($event, item.field)"
                 >
-                  <el-option
-                    :label="optionItem.label"
-                    :value="optionItem.value"
-                    v-for="optionItem in item.options"
-                    :key="optionItem.label"
-                  />
+                  <el-option :label="optionItem.label" :value="optionItem.value" v-for="optionItem in item.options" :key="optionItem.label" />
                 </el-select>
               </template>
               <template v-if="item.type === 'switch'">
-                <el-switch
-                  :model-value="modelValue[`${item.field}`]"
-                  @update:modelValue="handleValueChange($event, item.field)"
-                />
+                <el-switch :model-value="modelValue[`${item.field}`]" @update:modelValue="handleValueChange($event, item.field)" />
               </template>
 
               <template v-if="item.type === 'checkbox'">
-                <el-checkbox-group
-                  :model-value="modelValue[`${item.field}`]"
-                  @update:modelValue="handleValueChange($event, item.field)"
-                >
-                  <el-checkbox
-                    :label="optionItem.label"
-                    name="type"
-                    v-for="optionItem in item.options"
-                    :key="optionItem.label"
-                  />
+                <el-checkbox-group :model-value="modelValue[`${item.field}`]" @update:modelValue="handleValueChange($event, item.field)">
+                  <el-checkbox :label="optionItem.label" name="type" v-for="optionItem in item.options" :key="optionItem.label" />
                 </el-checkbox-group>
               </template>
               <template v-if="item.type === 'radio'">
-                <el-radio-group
-                  :model-value="modelValue[`${item.field}`]"
-                  @update:modelValue="handleValueChange($event, item.field)"
-                >
-                  <el-radio
-                    :label="optionItem.label"
-                    v-for="optionItem in item.options"
-                    :key="optionItem.label"
-                  />
+                <el-radio-group :model-value="modelValue[`${item.field}`]" @update:modelValue="handleValueChange($event, item.field)">
+                  <el-radio :label="optionItem.label" v-for="optionItem in item.options" :key="optionItem.label" />
                 </el-radio-group>
               </template>
               <template v-if="item.type === 'textarea'">
-                <el-input
-                  type="textarea"
-                  :model-value="modelValue[`${item.field}`]"
-                  @update:modelValue="handleValueChange($event, item.field)"
-                />
+                <el-input type="textarea" :model-value="modelValue[`${item.field}`]" @update:modelValue="handleValueChange($event, item.field)" />
               </template>
             </el-form-item>
           </el-col>

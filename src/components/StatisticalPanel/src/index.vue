@@ -3,11 +3,7 @@
     <el-card shadow="always" :body-style="{ padding: '25px' }">
       <div class="count-content">
         <div class="count-icon">
-          <el-icon
-            :size="72"
-            :color="panelData.color"
-            class="animate__animated animate__bounce animate__delay-2s"
-          >
+          <el-icon :size="72" :color="panelData.color" class="animate__animated animate__bounce animate__delay-2s">
             <histogram v-if="panelData.icon === 'histogram'" />
             <shopping-bag v-else-if="panelData.icon === 'shopping-bag'" />
             <collection v-else-if="panelData.icon === 'collection'" />
@@ -41,10 +37,7 @@ type propsType = {
 const props = withDefaults(defineProps<propsType>(), {})
 const countRef = ref<HTMLElement | null>(null)
 onMounted(() => {
-  const countUp = new CountUp(
-    countRef.value as HTMLElement,
-    props.panelData?.count
-  )
+  const countUp = new CountUp(countRef.value as HTMLElement, props.panelData?.count)
   if (!countUp.error) {
     countUp.start()
   } else {

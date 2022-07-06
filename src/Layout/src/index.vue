@@ -12,10 +12,13 @@
           <div class="page-info">
             <!-- <router-view class="animate__animated animate__fadeIn" /> -->
             <router-view #default="{ Component }">
-              <transition
-                enter-active-class="animate__animated animate__fadeIn"
-              >
-                <component :is="Component"></component>
+              <transition enter-active-class="animate__animated animate__fadeIn">
+                <div>
+                  <keep-alive>
+                    <component :is="Component" :key="route.name" v-if="route.meta.keepAlive"></component>
+                  </keep-alive>
+                  <component :is="Component" :key="route.name" v-if="!route.meta.keepAlive" />
+                </div>
               </transition>
             </router-view>
           </div>
@@ -30,7 +33,9 @@ import { computed } from 'vue'
 import NavMenu from '@/components/NavMenu'
 import NavHeader from '@/components/NavHeader'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 const store = useStore()
+const route = useRoute()
 const isCollapse = computed(() => store.state.mainModule.isCollapse)
 </script>
 

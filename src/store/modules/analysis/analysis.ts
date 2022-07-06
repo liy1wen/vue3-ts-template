@@ -1,14 +1,7 @@
 import { Module } from 'vuex'
 import { IRootState } from '../../types'
 import { IAnalysisState } from './types'
-import {
-  getCategorySale,
-  getCategoryCount,
-  getCitySale,
-  getCategoryCollection,
-  getTopSale,
-  getTotalAmount
-} from '@/api/analysis'
+import { getCategorySale, getCategoryCount, getCitySale, getCategoryCollection, getTopSale, getTotalAmount } from '@/api/analysis'
 export const analysisModule: Module<IAnalysisState, IRootState> = {
   namespaced: true,
   state: {

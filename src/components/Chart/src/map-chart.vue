@@ -22,9 +22,7 @@ const options = computed(() => ({
     // triggerOn: 'click',
     trigger: 'item',
     formatter: function (e: any) {
-      return 0.5 == e.value
-        ? e.name + '：总销量'
-        : e.seriesName + '<br />' + e.name + '：' + e.value
+      return 0.5 == e.value ? e.name + '：总销量' : e.seriesName + '<br />' + e.name + '：' + e.value
     }
   },
   visualMap: {

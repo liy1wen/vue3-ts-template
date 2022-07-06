@@ -1,19 +1,11 @@
 <template>
   <div class="table-content">
-    <Table
-      :dataList="dataList"
-      v-bind="tableConfig"
-      :dataCount="dataCount"
-      v-model:pageConfig="pageInfo"
-      @getData="getDataList"
-    >
+    <Table :dataList="dataList" v-bind="tableConfig" :dataCount="dataCount" v-model:pageConfig="pageInfo" @getData="getDataList">
       <!-- 常规插槽 -->
       <template #handerHeader>
         <div>
           <el-button type="primary" :icon="Delete">删除</el-button>
-          <el-button type="primary" :icon="CirclePlus" @click="handerAddNew"
-            >新增</el-button
-          >
+          <el-button type="primary" :icon="CirclePlus" @click="handerAddNew">新增</el-button>
         </div>
       </template>
       <template #createAt="scope">
@@ -23,35 +15,14 @@
         <div>{{ $filter.formatTime(scope.row.updateAt) }}</div>
       </template>
       <template #enable="scope">
-        <el-button
-          size="small"
-          plain
-          :type="scope.row.enable ? 'success' : 'danger'"
-          >{{ scope.row.enable ? '启用' : '禁用' }}</el-button
-        >
+        <el-button size="small" plain :type="scope.row.enable ? 'success' : 'danger'">{{ scope.row.enable ? '启用' : '禁用' }}</el-button>
       </template>
       <template #action="scope">
-        <el-button
-          size="small"
-          :icon="Edit"
-          type="primary"
-          @click="handleEdit(scope.row)"
-          >编辑</el-button
-        >
-        <el-button
-          size="small"
-          type="danger"
-          :icon="Delete"
-          @click="handleDelete(scope.row)"
-          >删除</el-button
-        >
+        <el-button size="small" :icon="Edit" type="primary" @click="handleEdit(scope.row)">编辑</el-button>
+        <el-button size="small" type="danger" :icon="Delete" @click="handleDelete(scope.row)">删除</el-button>
       </template>
       <!-- 动态插槽 -->
-      <template
-        v-for="item in otherSlotList"
-        :key="item.slotName"
-        #[item.slotName]="scope"
-      >
+      <template v-for="item in otherSlotList" :key="item.slotName" #[item.slotName]="scope">
         <slot :name="item.slotName" :row="scope.row"></slot>
       </template>
     </Table>
@@ -75,7 +46,8 @@ const pageInfo = ref({
   pageSize: 10,
   currentPage: 1
 })
-const queryParams = ref({})
+const defaultQueryCondition = (props as any).tableConfig.defaultQueryCondition
+const queryParams = ref(defaultQueryCondition || {})
 // watch(pageInfo, () => getDataList())
 const url = (props as any).tableConfig.requestUrl
 const store = useStore()

@@ -1,14 +1,7 @@
 <template>
   <div class="dashboard-container">
     <el-row :gutter="20" class="panel-group">
-      <el-col
-        :xs="24"
-        :sm="12"
-        :lg="6"
-        v-for="item in statisticalPanelLists"
-        :key="item.icon"
-        class="card-panel"
-      >
+      <el-col :xs="24" :sm="12" :lg="6" v-for="item in statisticalPanelLists" :key="item.icon" class="card-panel">
         <statistical-panel :panelData="item"></statistical-panel>
       </el-col>
     </el-row>
@@ -24,8 +17,7 @@
         </Card>
       </el-col>
       <el-col :span="7"
-        ><Card title="销量前10的商品数量">
-          <rose-chart :data="topSaleData" /></Card
+        ><Card title="销量前10的商品数量"> <rose-chart :data="topSaleData" /></Card
       ></el-col>
     </el-row>
     <el-row :gutter="20" class="panel-group panel-last">
