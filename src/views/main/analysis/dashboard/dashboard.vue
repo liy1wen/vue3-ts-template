@@ -1,14 +1,7 @@
 <template>
   <div class="dashboard-container">
     <el-row :gutter="20" class="panel-group">
-      <el-col
-        :xs="24"
-        :sm="12"
-        :lg="6"
-        v-for="item in statisticalPanelLists"
-        :key="item.icon"
-        class="card-panel"
-      >
+      <el-col :xs="24" :sm="12" :lg="6" v-for="item in statisticalPanelLists" :key="item.icon" class="card-panel">
         <statistical-panel :panelData="item"></statistical-panel>
       </el-col>
     </el-row>
@@ -24,8 +17,7 @@
         </Card>
       </el-col>
       <el-col :span="7"
-        ><Card title="销量前10的商品数量">
-          <rose-chart :data="topSaleData" /></Card
+        ><Card title="销量前10的商品数量"> <rose-chart :data="topSaleData" /></Card
       ></el-col>
     </el-row>
     <el-row :gutter="20" class="panel-group panel-last">
@@ -46,16 +38,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Card from '@/components/Card'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { analysisStore } from '@/store/analysis'
 import { RoseChart, LineChart, PieChart, MapChart } from '@/components/Chart'
 import StatisticalPanel from '@/components/StatisticalPanel'
 // 发起网络请求
-const store = useStore()
-store.dispatch('analysisModule/getAnalysisData')
+// const store = useStore()
+const analysis = analysisStore()
+analysis.getAnalysisData()
 
 // 获取顶部统计数据
 const statisticalPanelLists = computed(() =>
-  store.state.analysisModule.totalAmount.map((item: any, index: number) => {
+  analysis.totalAmount.map((item: any, index: number) => {
     const colorList = ['#64D9D6', '#36A2F6', '#34BFA3', '#F3516C']
     const iconList = ['shopping-bag', 'collection', 'histogram', 'coin']
     return {
@@ -68,21 +62,21 @@ const statisticalPanelLists = computed(() =>
 )
 // 分类商品数量
 const categoryCountData = computed(() =>
-  store.state.analysisModule.categoryCount.map((item: any) => ({
+  analysis.categoryCount.map((item: any) => ({
     name: item.name,
     value: item.goodsCount
   }))
 )
 // top销量
 const topSaleData = computed(() =>
-  store.state.analysisModule.topSale.map((item: any) => ({
+  analysis.topSale.map((item: any) => ({
     name: item.name,
     value: item.saleCount
   }))
 )
 // 分类销量
 const categorySaleData = computed(() => {
-  const categorySale = store.state.analysisModule.categorySale
+  const categorySale = analysis.categorySale
   const labels: string[] = []
   const values: any[] = []
   categorySale.map((item: any) => {
@@ -93,7 +87,7 @@ const categorySaleData = computed(() => {
 })
 // 分类商品的收藏
 const categoryCollectioData = computed(() => {
-  const categoryCollection = store.state.analysisModule.categoryCollection
+  const categoryCollection = analysis.categoryCollection
   const labels: string[] = []
   const values: any[] = []
   categoryCollection.map((item: any) => {

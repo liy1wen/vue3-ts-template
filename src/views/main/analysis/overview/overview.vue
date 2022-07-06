@@ -1,10 +1,7 @@
 <template>
   <div class="overview">
     <Card title="项目介绍" class="card-box">
-      <div class="c-left">
-        Vue3Admin 是基于 Vue3、Vuex、VueRouter、Vite、 ElementPlus
-        、TypeScript、Echart5 等后台系统解决方案。
-      </div>
+      <div class="c-left">Vue3Admin 是基于 Vue3、Vuex、VueRouter、Vite、 ElementPlus 、TypeScript、Echart5 等后台系统解决方案。</div>
     </Card>
     <Card title="技术栈" class="card-box">
       <div class="c-left">

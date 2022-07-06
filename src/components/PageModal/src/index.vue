@@ -1,12 +1,6 @@
 <template>
   <div>
-    <el-dialog
-      v-model="dialogVisible"
-      :title="title"
-      width="30%"
-      center
-      destroy-on-close
-    >
+    <el-dialog v-model="dialogVisible" :title="title" width="30%" center destroy-on-close>
       <Form v-bind="modalConfig" v-model="formData" ref="formRef" />
       <slot></slot>
       <template #footer>
@@ -21,7 +15,7 @@
 
 <script setup lang="ts">
 import Form from '../../Form'
-import { useStore } from 'vuex'
+import { systemStore } from '@/store/system'
 import { ref, watch } from 'vue'
 import { IForm } from '@/components/Form/types'
 type propsType = {
@@ -38,7 +32,7 @@ const props = withDefaults(defineProps<propsType>(), {
 const formRef = ref<InstanceType<typeof Form>>()
 const dialogVisible = ref(false)
 const formData = ref<any>({})
-const store = useStore()
+const system = systemStore()
 watch(
   () => props.editDefaultData,
   (newVal) => {
@@ -52,7 +46,7 @@ const submit = async () => {
 
   if (Object.keys(props.editDefaultData).length) {
     // 编辑
-    store.dispatch('systemModule/updateData', {
+    system.updateData({
       url: `${props.pageName}/${props.editDefaultData.id}`,
       params: {
         ...formData.value,
@@ -61,7 +55,7 @@ const submit = async () => {
     })
   } else {
     // 新增
-    store.dispatch('systemModule/createData', {
+    system.createData({
       url: props.pageName,
       params: {
         ...formData.value,

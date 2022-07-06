@@ -1,31 +1,13 @@
 <template>
-  <el-form
-    ref="ruleFormRef"
-    :model="accountForm"
-    :rules="accountRules"
-    label-width="70px"
-    class="login-ruleForm"
-    size="large"
-  >
+  <el-form ref="ruleFormRef" :model="accountForm" :rules="accountRules" label-width="70px" class="login-ruleForm" size="large">
     <el-form-item prop="name">
-      <el-input
-        v-model="accountForm.name"
-        clearable
-        :prefix-icon="UserFilled"
-      />
+      <el-input v-model="accountForm.name" clearable :prefix-icon="UserFilled" />
     </el-form-item>
     <el-form-item prop="password">
-      <el-input
-        show-password
-        type="password"
-        v-model="accountForm.password"
-        :prefix-icon="Lock"
-      />
+      <el-input show-password type="password" v-model="accountForm.password" :prefix-icon="Lock" />
     </el-form-item>
     <el-form-item>
-      <el-button class="login-button primary-btn" size="large" @click="login"
-        >Login</el-button
-      >
+      <el-button class="login-button primary-btn" size="large" @click="login">Login</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -36,9 +18,10 @@ import type { FormInstance } from 'element-plus'
 import { UserFilled, Lock } from '@element-plus/icons-vue'
 import { accountRules } from '../../../Validation'
 import utils from '@/utils/cache'
-import { useStore } from 'vuex'
+import { userStore } from '@/store/user'
+// import { useStore } from 'vuex'
 
-const store = useStore()
+const user = userStore()
 const ruleFormRef = ref<FormInstance>()
 const accountForm = reactive({
   name: utils.getCache('name') ?? 'kobe',
@@ -47,7 +30,7 @@ const accountForm = reactive({
 const login = () => {
   ruleFormRef.value?.validate((valid: boolean) => {
     if (valid) {
-      store.dispatch('userModule/login', { ...accountForm })
+      user.login({ ...accountForm })
     } else {
       console.log('error submit!')
     }

@@ -50,13 +50,14 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
+import { userStore } from '@/store/user'
+import { mainStore } from '@/store/main'
 import { useRoute } from 'vue-router'
-const store = useStore()
+const user = userStore()
+const main = mainStore()
 const route = useRoute()
-const userMenus = computed(() => store.state.userModule.userMenu)
-console.log(userMenus)
-const collapse = computed(() => store.state.mainModule.isCollapse)
+const userMenus = computed(() => user.userMenu)
+const collapse = computed(() => main.isCollapse)
 const activeMenu = ref(route.path)
 </script>
 

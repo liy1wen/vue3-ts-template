@@ -1,25 +1,15 @@
 <template>
   <div>
     <page-search :formConfig="formConfig" @clickSearch="handerSearch" />
-    <page-content
-      :tableConfig="tableConfig"
-      ref="pageContentRef"
-      @edit="handleEdit"
-      @addNew="handleAdd"
-    />
-    <page-modal
-      ref="pageModalRef"
-      :modalConfig="modalConfigRef"
-      :editDefaultData="editDefaultData"
-      :title="modalTitle"
-      pageName="users"
-    ></page-modal>
+    <page-content :tableConfig="tableConfig" ref="pageContentRef" @edit="handleEdit" @addNew="handleAdd" />
+    <page-modal ref="pageModalRef" :modalConfig="modalConfigRef" :editDefaultData="editDefaultData" :title="modalTitle" pageName="users"></page-modal>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { systemStore } from '@/store/system'
 import { formConfig } from './config/formConfig'
 import { tableConfig } from './config/tableConfig'
 import { modalConfig } from './config/modalConfig'
@@ -46,8 +36,9 @@ const addCb = () => {
   })
 }
 // 获取部门
-const store = useStore()
-store.dispatch('systemModule/getDataList', {
+// const system = useStore()
+const system = systemStore()
+system.getDataList({
   url: 'department',
   params: {
     offset: 0,
@@ -55,7 +46,7 @@ store.dispatch('systemModule/getDataList', {
   }
 })
 // 获取角色
-store.dispatch('systemModule/getDataList', {
+system.getDataList({
   url: 'role',
   params: {
     offset: 0,
@@ -64,11 +55,9 @@ store.dispatch('systemModule/getDataList', {
 })
 // 动态添加部门和角色列表
 const modalConfigRef = computed(() => {
-  const departmentList = store.state.systemModule.departmentList
-  const roleList = store.state.systemModule.roleList
-  const departmentItem = modalConfig.formItems.find(
-    (item) => item.field === 'departmentId'
-  )
+  const departmentList = system.departmentList
+  const roleList = system.roleList
+  const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
   if (departmentItem) {
     departmentItem.options = departmentList.map((item: any) => {
       return { value: item.id, label: item.name }
@@ -85,9 +74,6 @@ const modalConfigRef = computed(() => {
 })
 
 const [pageContentRef, handerSearch] = usePageSearch()
-const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
-  editCb,
-  addCb
-)
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(editCb, addCb)
 </script>
 <style scoped></style>

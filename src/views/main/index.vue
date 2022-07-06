@@ -10,7 +10,18 @@
         </el-header>
         <el-main class="page-content">
           <div class="page-info">
-            <router-view />
+            <Suspense>
+              <router-view #default="{ Component }">
+                <transition enter-active-class="animate__animated animate__fadeIn">
+                  <div>
+                    <!-- <keep-alive>
+                      <component :is="Component" :key="route.name" v-if="route.meta.keepAlive"></component>
+                    </keep-alive> -->
+                    <component :is="Component" :key="route.name" />
+                  </div>
+                </transition>
+              </router-view>
+            </Suspense>
           </div>
         </el-main>
       </el-container>
@@ -22,10 +33,11 @@
 import { computed } from 'vue'
 import NavMenu from '@/components/NavMenu'
 import NavHeader from '@/components/NavHeader'
-import { useStore } from 'vuex'
-
-const store = useStore()
-const isCollapse = computed(() => store.state.mainModule.isCollapse)
+import { mainStore } from '@/store/main'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const main = mainStore()
+const isCollapse = computed(() => main.isCollapse)
 </script>
 
 <style scoped lang="less">

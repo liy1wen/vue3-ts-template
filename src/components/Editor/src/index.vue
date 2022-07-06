@@ -6,9 +6,7 @@
     </div>
     <div id="editor" ref="editorRef"></div>
     <div class="syncContent" :innerHTML="content.html"></div>
-    <el-button type="primary" class="submit-btn" @click="submit"
-      >提交</el-button
-    >
+    <el-button type="primary" class="submit-btn" @click="submit">提交</el-button>
   </div>
 </template>
 
@@ -17,12 +15,8 @@ import { onMounted, ref, onBeforeUnmount } from 'vue'
 import WangEditor from 'wangeditor'
 import type Editor from 'wangeditor'
 import hljs from 'highlight.js'
-import { useStore } from 'vuex'
-const store = useStore()
-// export interface EditorInfo {
-//   html: string
-//   text: string
-// }
+import { storyStore } from '@/store/story'
+const story = storyStore()
 const storyInfo = ref({
   title: '',
   content: ''
@@ -53,7 +47,7 @@ const initEditor = () => {
 }
 // 提交
 const submit = () => {
-  store.dispatch('storyModule/publishStory', { ...storyInfo.value })
+  story.publishStory({ ...storyInfo.value })
   instance.value?.txt.clear()
   storyInfo.value = { title: '', content: '' }
 }

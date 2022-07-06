@@ -1,18 +1,17 @@
-import { Module } from 'vuex'
+import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
-import { IRootState } from '../../types'
 import { publishStory } from '@/api/story/index'
-
-export const storyModule: Module<any, IRootState> = {
-  namespaced: true,
-  state: {},
+export const storyStore = defineStore('story', {
+  state: () => {
+    return {}
+  },
+  getters: {},
   actions: {
     async publishStory(payload: any) {
-      console.log(payload)
       const { data, code } = await publishStory(payload)
       if (code === 0) {
         ElMessage.success(data)
       }
     }
   }
-}
+})

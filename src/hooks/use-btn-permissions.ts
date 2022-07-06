@@ -1,7 +1,7 @@
-import { useStore } from 'vuex'
+import { userStore } from '@/store/user'
 export const useBtnPermissions = (url: string, permissionType: string) => {
-  const store = useStore()
-  const btnPermissions = store.state.userModule.btnPermissions
+  const user = userStore()
+  const btnPermissions = user.btnPermissions
   const currentBtnPermission = `system:${url}:${permissionType}`
   return btnPermissions.includes(currentBtnPermission)
 }

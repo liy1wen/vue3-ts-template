@@ -1,18 +1,7 @@
 <template>
   <div>
-    <page-content
-      :tableConfig="tableConfig"
-      ref="pageContentRef"
-      @edit="handleEdit"
-      @addNew="handleAdd"
-    ></page-content>
-    <page-modal
-      ref="pageModalRef"
-      :modalConfig="modalConfig"
-      :editDefaultData="editDefaultData"
-      :title="modalTitle"
-      pageName="department"
-    ></page-modal>
+    <page-content :tableConfig="tableConfig" ref="pageContentRef" @edit="handleEdit" @addNew="handleAdd"></page-content>
+    <page-modal ref="pageModalRef" :modalConfig="modalConfig" :editDefaultData="editDefaultData" :title="modalTitle" pageName="department"></page-modal>
   </div>
 </template>
 
@@ -31,10 +20,7 @@ const addCb = () => {
   modalTitle.value = '新增部门'
 }
 const [pageContentRef] = usePageSearch()
-const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
-  editCb,
-  addCb
-)
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(editCb, addCb)
 </script>
 
 <style scoped></style>

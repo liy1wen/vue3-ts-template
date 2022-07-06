@@ -1,13 +1,5 @@
 // 输入框类型
-type fromType =
-  | 'input'
-  | 'password'
-  | 'select'
-  | 'date'
-  | 'switch '
-  | 'checkbox'
-  | 'radio'
-  | 'textarea'
+type fromType = 'input' | 'password' | 'select' | 'date' | 'switch' | 'checkbox' | 'radio' | 'textarea'
 
 // form-item属性
 export interface IFormItem {
@@ -19,6 +11,7 @@ export interface IFormItem {
   options?: any[] //选项，如select里面的options
   otherOptions?: any //其它选项
   isHidden?: boolean //是否隐藏
+  defaultValue?: any //默认值
 }
 
 // form属性

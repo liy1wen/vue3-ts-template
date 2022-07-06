@@ -1,30 +1,11 @@
 <template>
   <div>
     <page-search :formConfig="formConfig" @clickSearch="handerSearch" />
-    <page-content
-      :tableConfig="tableConfig"
-      ref="pageContentRef"
-      @edit="handleEdit"
-      @addNew="handleAdd"
-    />
-    <page-modal
-      ref="pageModalRef"
-      :modalConfig="modalConfig"
-      :editDefaultData="editDefaultData"
-      :title="modalTitle"
-      :otherInfo="otherInfo"
-      pageName="role"
-    >
+    <page-content :tableConfig="tableConfig" ref="pageContentRef" @edit="handleEdit" @addNew="handleAdd" />
+    <page-modal ref="pageModalRef" :modalConfig="modalConfig" :editDefaultData="editDefaultData" :title="modalTitle" :otherInfo="otherInfo" pageName="role">
       <div class="menu-tree">
         <div class="menu-label">菜单权限</div>
-        <el-tree
-          ref="treeRef"
-          :data="menuList"
-          show-checkbox
-          node-key="id"
-          @check="handleNodeClick"
-          :props="defaultProps"
-        />
+        <el-tree ref="treeRef" :data="menuList" show-checkbox node-key="id" @check="handleNodeClick" :props="defaultProps" />
       </div>
     </page-modal>
   </div>
@@ -38,9 +19,9 @@ import { tableConfig } from './config/tableConfig'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
 import type { ElTree } from 'element-plus'
-import { useStore } from 'vuex'
+import { systemStore } from '@/store/system'
 import { generateLeafKeys } from '@/utils/generateLeafKeys'
-const store = useStore()
+const system = systemStore()
 const modalTitle = ref('')
 const treeRef = ref<InstanceType<typeof ElTree>>()
 const defaultProps = {
@@ -48,14 +29,14 @@ const defaultProps = {
   label: 'name'
 }
 // 获取所有菜单
-store.dispatch('systemModule/getDataList', {
+system.getDataList({
   url: 'menu',
   params: {
     offset: 0,
     size: 100
   }
 })
-const menuList = computed(() => store.state.systemModule.menuList)
+const menuList = computed(() => system.menuList)
 const otherInfo = ref({})
 const editCb = (item: any) => {
   modalTitle.value = '编辑角色'
@@ -74,10 +55,7 @@ const handleNodeClick = (treeNode: any, info: any) => {
   }
 }
 const [pageContentRef, handerSearch] = usePageSearch()
-const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(
-  editCb,
-  addCb
-)
+const [pageModalRef, editDefaultData, handleEdit, handleAdd] = usePageModal(editCb, addCb)
 </script>
 <style scoped lang="less">
 .menu-tree {

@@ -1,9 +1,7 @@
 <template>
   <el-breadcrumb separator="/">
     <template v-for="item in breadCrumbs" :key="item.path">
-      <el-breadcrumb-item :to="{ path: item.path }">{{
-        item.name
-      }}</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: item.path }">{{ item.name }}</el-breadcrumb-item>
     </template>
   </el-breadcrumb>
 </template>

@@ -15,19 +15,8 @@
       :header-cell-style="headerStyle"
       @selection-change="handleSelectionChange"
     >
-      <el-table-column
-        type="selection"
-        width="60"
-        align="center"
-        v-if="showSelectColumn"
-      />
-      <el-table-column
-        type="index"
-        label="序号"
-        width="80"
-        align="center"
-        v-if="showIndexColumn"
-      />
+      <el-table-column type="selection" width="60" align="center" v-if="showSelectColumn" />
+      <el-table-column type="index" label="序号" width="80" align="center" v-if="showIndexColumn" />
       <template v-for="item in propList" :key="item.prop">
         <el-table-column align="center" v-bind="item" show-overflow-tooltip>
           <template #default="scope">

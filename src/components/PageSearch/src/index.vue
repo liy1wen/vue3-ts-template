@@ -6,12 +6,8 @@
       </template> -->
       <template #footer>
         <div class="buttons">
-          <el-button type="primary" :icon="Refresh" @click="resetData"
-            >重置</el-button
-          >
-          <el-button type="primary" :icon="Search" @click="search"
-            >搜索</el-button
-          >
+          <el-button type="primary" :icon="Refresh" @click="resetData">重置</el-button>
+          <el-button type="primary" :icon="Search" @click="search">搜索</el-button>
         </div>
       </template>
     </Form>

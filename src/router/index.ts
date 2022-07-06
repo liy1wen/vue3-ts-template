@@ -38,24 +38,4 @@ const router = createRouter({
   routes
 })
 
-// 导航守卫
-router.beforeEach((to) => {
-  const token = localCache.getCache('token')
-  if (to.path !== '/login') {
-    if (!token) {
-      return '/login'
-    }
-  } else {
-    if (token) {
-      return '/main'
-    }
-  }
-
-  if (to.path.indexOf('/main') !== -1) {
-    if (to.name === 'notFound') {
-      to.name = 'user'
-    }
-  }
-})
-
 export default router

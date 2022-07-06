@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { createPinia } from 'pinia'
 import router from './router'
-import store from './store'
+import { userStore } from '@/store/user'
 import 'element-plus/dist/index.css'
 import 'normalize.css'
 import 'animate.css'
@@ -10,20 +11,21 @@ import './assets/css/index.less'
 import localCache from '@/utils/cache'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import '@/router/permission'
 
 import { globalRegister } from './global/index'
-
+const pinia = createPinia()
+const app = createApp(App)
+app.use(pinia)
+const user = userStore()
 // 防止刷新页面路由消失
 if (localCache.getCache('userMenu')) {
-  store.commit('userModule/SET_USERMENU', localCache.getCache('userMenu'))
+  user.setUserMenu(localCache.getCache('userMenu'))
 }
-
-const app = createApp(App)
 globalRegister(app)
 
 app
   .use(router)
-  .use(store)
   .use(ElementPlus, {
     locale: zhCn
   })

@@ -10,8 +10,7 @@ enum AnalysisApi {
   totalAmount = '/goods/amount/list'
 }
 // 每个分类商品的销量
-export const getCategorySale = () =>
-  lRequest.get<IResponse>({ url: AnalysisApi.categorySale })
+export const getCategorySale = () => lRequest.get<IResponse>({ url: AnalysisApi.categorySale })
 
 // 每个分类商品的数量
 export const getCategoryCount = () =>
@@ -21,8 +20,7 @@ export const getCategoryCount = () =>
   })
 
 // 不同城市商品销量
-export const getCitySale = () =>
-  lRequest.get<IResponse>({ url: AnalysisApi.citySale, showLoading: false })
+export const getCitySale = () => lRequest.get<IResponse>({ url: AnalysisApi.citySale, showLoading: false })
 
 // 分类商品的收藏
 export const getCategoryCollection = () =>
@@ -32,9 +30,7 @@ export const getCategoryCollection = () =>
   })
 
 // 销量前10的商品数量分类商品的收藏
-export const getTopSale = () =>
-  lRequest.get<IResponse>({ url: AnalysisApi.topSale, showLoading: false })
+export const getTopSale = () => lRequest.get<IResponse>({ url: AnalysisApi.topSale, showLoading: false })
 
 // 商品数据统计的数量
-export const getTotalAmount = () =>
-  lRequest.get<IResponse>({ url: AnalysisApi.totalAmount, showLoading: false })
+export const getTotalAmount = () => lRequest.get<IResponse>({ url: AnalysisApi.totalAmount, showLoading: false })

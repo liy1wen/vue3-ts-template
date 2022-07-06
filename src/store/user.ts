@@ -1,42 +1,25 @@
-/*
- * @Description:
- * @Version: 2.0
- * @Autor: Seven
- * @Date: 2022-04-02 11:56:43
- * @LastEditors: Seven
- * @LastEditTime: 2022-04-07 10:07:37
- */
-import { Module } from 'vuex'
-import { IUserState } from './types'
-import { IRootState } from '../../types'
+import { defineStore } from 'pinia'
 import localCache from '@/utils/cache'
 import { generateBtnPermissions } from '@/utils/generateBtnPermissions'
 import { accountLogin, getUserInfo, getUserMenu } from '@/api/login'
 import { IRequest } from '@/api/login/types'
 import router from '@/router'
 import { generateRoutes } from '@/utils/generateRoutes'
-
-export const userModule: Module<IUserState, IRootState> = {
-  namespaced: true,
-  state: {
-    userInfo: localCache.getCache('userInfo') ?? '',
-    token: localCache.getCache('token') ?? '',
-    userMenu: localCache.getCache('userMenu') ?? [],
-    btnPermissions: localCache.getCache('btnPermissions') ?? []
+export const userStore = defineStore('user', {
+  state: () => {
+    return {
+      userInfo: localCache.getCache('userInfo') ?? '',
+      token: localCache.getCache('token') ?? '',
+      userMenu: localCache.getCache('userMenu') ?? [],
+      btnPermissions: localCache.getCache('btnPermissions') ?? []
+    }
   },
   getters: {},
-  mutations: {
-    SET_TOKEN(state: IUserState, token: string) {
-      state.token = token
-    },
-    SET_USERINFO(state: IUserState, userInfo: any) {
-      state.userInfo = userInfo
-    },
-    SET_USERMENU(state: IUserState, userMenu: any) {
-      state.userMenu = userMenu
+  actions: {
+    setUserMenu(userMenu: any) {
+      this.userMenu = userMenu
       // userMenus => routes
       const routes = generateRoutes(userMenu)
-
       // 将routes => router.main.children
       routes.forEach((route) => {
         router.addRoute('main', route)
@@ -44,22 +27,20 @@ export const userModule: Module<IUserState, IRootState> = {
 
       const btnPermissions = generateBtnPermissions(userMenu)
       localCache.setCache('btnPermissions', btnPermissions)
-      state.btnPermissions = btnPermissions
-    }
-  },
-  actions: {
-    async login({ commit }, payload: IRequest) {
+      this.btnPermissions = btnPermissions
+    },
+    async login(payload: IRequest) {
       // 登录获取token
       const { data } = await accountLogin(payload)
-      commit('SET_TOKEN', data.token)
+      this.token = data.toke
       localCache.setCache('token', data.token)
       // 获取用户信息
       const userInfo = await getUserInfo(data.id)
-      commit('SET_USERINFO', userInfo.data)
+      this.userInfo = userInfo.data
       localCache.setCache('userInfo', userInfo.data)
       // 获取菜单
       const userMenu = await getUserMenu(userInfo.data.role.id)
-      commit('SET_USERMENU', userMenu.data)
+      this.setUserMenu(userMenu.data)
       localCache.setCache('userMenu', userMenu.data)
       router.replace('/main/analysis/dashboard')
     },
@@ -75,4 +56,4 @@ export const userModule: Module<IUserState, IRootState> = {
       // location.reload()
     }
   }
-}
+})

@@ -8,7 +8,7 @@ export function generateRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routeFiles = require.context('../router/main', true, /\.ts/)
   routeFiles.keys().forEach((key) => {
     const route = require('../router/main' + key.split('.')[1]).default
-    console.log(route)
+    // console.log(route)
     allRoutes.push(route)
   })
 

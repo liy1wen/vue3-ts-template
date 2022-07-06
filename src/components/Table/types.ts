@@ -6,6 +6,7 @@ export interface IPropList {
 }
 
 export interface ITable {
+  defaultQueryCondition?: any
   propList: IPropList[]
   showIndexColumn?: boolean
   showSelectColumn?: boolean

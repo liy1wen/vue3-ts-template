@@ -1,25 +1,11 @@
 <template>
   <div class="table-content">
-    <Table
-      :dataList="dataList"
-      v-bind="tableConfig"
-      :dataCount="dataCount"
-      v-model:pageConfig="pageInfo"
-      @getData="getDataList"
-    >
+    <Table :dataList="dataList" v-bind="tableConfig" :dataCount="dataCount" v-model:pageConfig="pageInfo" @getData="getDataList">
       <!-- 常规插槽 -->
       <template #handerHeader>
         <div>
-          <el-button type="primary" :icon="Delete" v-if="showDeleteBtn"
-            >删除</el-button
-          >
-          <el-button
-            type="primary"
-            :icon="CirclePlus"
-            v-if="showCreateBtn"
-            @click="handerAddNew"
-            >新增</el-button
-          >
+          <el-button type="primary" :icon="Delete" v-if="showDeleteBtn">删除</el-button>
+          <el-button type="primary" :icon="CirclePlus" v-if="showCreateBtn" @click="handerAddNew">新增</el-button>
         </div>
       </template>
       <template #createAt="scope">
@@ -29,37 +15,14 @@
         <div>{{ $filter.formatTime(scope.row.updateAt) }}</div>
       </template>
       <template #enable="scope">
-        <el-button
-          size="small"
-          plain
-          :type="scope.row.enable ? 'success' : 'danger'"
-          >{{ scope.row.enable ? '启用' : '禁用' }}</el-button
-        >
+        <el-button size="small" plain :type="scope.row.enable ? 'success' : 'danger'">{{ scope.row.enable ? '启用' : '禁用' }}</el-button>
       </template>
       <template #action="scope">
-        <el-button
-          size="small"
-          :icon="Edit"
-          type="primary"
-          @click="handleEdit(scope.row)"
-          v-if="showUpdateBtn"
-          >编辑</el-button
-        >
-        <el-button
-          size="small"
-          type="danger"
-          :icon="Delete"
-          @click="handleDelete(scope.row)"
-          v-if="showDeleteBtn"
-          >删除</el-button
-        >
+        <el-button size="small" :icon="Edit" type="primary" @click="handleEdit(scope.row)" v-if="showUpdateBtn">编辑</el-button>
+        <el-button size="small" type="danger" :icon="Delete" @click="handleDelete(scope.row)" v-if="showDeleteBtn">删除</el-button>
       </template>
       <!-- 动态插槽 -->
-      <template
-        v-for="item in otherSlotList"
-        :key="item.slotName"
-        #[item.slotName]="scope"
-      >
+      <template v-for="item in otherSlotList" :key="item.slotName" #[item.slotName]="scope">
         <slot :name="item.slotName" :row="scope.row"></slot>
       </template>
     </Table>
@@ -69,11 +32,11 @@
 <script setup lang="ts">
 import Table from '../../Table'
 import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Delete, CirclePlus, Edit } from '@element-plus/icons-vue'
 import { useBtnPermissions } from '@/hooks/use-btn-permissions'
 import { ITable } from '@/components/Table/types'
+import { systemStore } from '@/store/system'
 type propsType = {
   tableConfig: ITable
 }
@@ -83,13 +46,13 @@ const pageInfo = ref({
   pageSize: 10,
   currentPage: 1
 })
-const queryParams = ref({})
-// watch(pageInfo, () => getDataList())
+const defaultQueryCondition = (props as any).tableConfig.defaultQueryCondition
+const queryParams = ref(defaultQueryCondition || {})
 const url = (props as any).tableConfig.requestUrl
-const store = useStore()
+const system = systemStore()
 // 获取列表数据
 const getDataList = () => {
-  store.dispatch('systemModule/getDataList', {
+  system.getDataList({
     url,
     params: {
       offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
@@ -100,8 +63,8 @@ const getDataList = () => {
 }
 getDataList()
 // 从store回去列表数据和总数
-const dataList = computed(() => store.state.systemModule[`${url}List`])
-const dataCount = computed(() => store.state.systemModule[`${url}Count`])
+const dataList = computed(() => system[`${url}List`])
+const dataCount = computed(() => system[`${url}Count`])
 
 // 动态插槽
 const defaultSlotList = ['createAt', 'updateAt', 'enable', 'action']
@@ -127,7 +90,7 @@ const handleDelete = (row: any) => {
     type: 'warning'
   })
     .then(() => {
-      store.dispatch('systemModule/deleteData', {
+      system.deleteData({
         url,
         id
       })

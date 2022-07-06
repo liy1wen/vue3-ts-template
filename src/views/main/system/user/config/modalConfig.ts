@@ -23,9 +23,7 @@ export const modalConfig: IForm = {
       type: 'input',
       label: '真实姓名',
       placeholder: '请输入真实姓名',
-      rule: [
-        { required: true, message: 'Please input realname', trigger: 'blur' }
-      ]
+      rule: [{ required: true, message: 'Please input realname', trigger: 'blur' }]
     },
     {
       field: 'password',
@@ -33,9 +31,7 @@ export const modalConfig: IForm = {
       label: '用户密码',
       placeholder: '请输入密码',
       isHidden: false,
-      rule: [
-        { required: true, message: 'Please input password', trigger: 'blur' }
-      ]
+      rule: [{ required: true, message: 'Please input password', trigger: 'blur' }]
     },
     {
       field: 'cellphone',
@@ -75,9 +71,7 @@ export const modalConfig: IForm = {
       label: '角色',
       placeholder: '请选择角色',
       options: [],
-      rule: [
-        { required: true, message: 'Please input roleId', trigger: 'change' }
-      ]
+      rule: [{ required: true, message: 'Please input roleId', trigger: 'change' }]
     }
   ],
   labelWidth: '80px',

@@ -13,21 +13,25 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
 import UserOperation from './user-operation.vue'
 import BreadCrumbs from './bread-crumbs.vue'
 import { useRoute } from 'vue-router'
 import { generateBreadCrumbs } from '@/utils/generateBreadCrumbs'
-const store = useStore()
+import { mainStore } from '@/store/main'
+import { userStore } from '@/store/user'
+const main = mainStore()
+const user = userStore()
 const route = useRoute()
 const isFold = ref(false)
 const handleFoldClick = () => {
   isFold.value = !isFold.value
-  store.commit('mainModule/SET_ISCOLLAPSE', isFold.value)
+  main.$patch((state) => {
+    state.isCollapse = isFold.value
+  })
 }
 
 const bCrumbs = computed(() => {
-  return generateBreadCrumbs(store.state.userModule.userMenu, route.path)
+  return generateBreadCrumbs(user.userMenu, route.path)
 })
 </script>
 
